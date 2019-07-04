@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using ExaminationProgram;
+using ExaminationProgram.Abstractions;
 using ExaminationProgram.Instruments;
 using ExaminationProgram.Modules.LogsModule;
 using ExaminationProgram.Modules.DataBaseModule;
@@ -15,11 +15,11 @@ namespace ExaminationProgram
         protected override void OnStartup(StartupEventArgs e)
         {
             var shell = new Shell("АИК");
-            var InstrumentalViewModel = new InstrumentalView();
-            var SettingsViewModel = new SettingsView();
-            var MeasurementsViewModel = new MeasurementsView();
-            var DataBaseViewModel = new DataBaseView();
-            var LogsViewModel = new LogsView();
+            var InstrumentalView = new InstrumentalView();
+            var SettingsView = new SettingsView();
+            var MeasurementsView = new MeasurementsView();
+            var DataBaseView = new DataBaseView();
+            var LogsView = new LogsView();
 
             var ContextMediator = new ContextMediator();
             var SettingsGroupsContainer = new SettingsGroupsContainer(
@@ -33,18 +33,31 @@ namespace ExaminationProgram
                     new DoubleSetting() { Name = "Setting3.1", Dimention = "mV", Visible = true },
                     new IntSetting() { Name = "Setting3.2", Dimention = "Rad", Visible = true }));
 
-            InstrumentalViewModel.DataContext = new InstrumentalViewModel("Модуль приборов", "appbar_power", ContextMediator ,new SignalAnalyzer(), new SignalGenerator()); 
-            SettingsViewModel.DataContext = new SettingsViewModel("Модуль настроек", "appbar_settings", ContextMediator ) {Groups = SettingsGroupsContainer.SettingsGroups };            
-            MeasurementsViewModel.DataContext = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
-            DataBaseViewModel.DataContext = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
-            LogsViewModel.DataContext = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
+            var InstrumentalViewModel = new InstrumentalViewModel("Модуль приборов", "appbar_power", ContextMediator ,new SignalAnalyzer(), new SignalGenerator()); 
+            var SettingsViewModel = new SettingsViewModel("Модуль настроек", "appbar_settings", ContextMediator ) {Groups = SettingsGroupsContainer.SettingsGroups };            
+            var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
+            var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
+            var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
+
+            InstrumentalView.DataContext = InstrumentalViewModel;
+            SettingsView.DataContext = SettingsViewModel;
+            MeasurementsView.DataContext = MeasurementsViewModel;
+            DataBaseView.DataContext = DataBaseViewModel;
+            LogsView.DataContext = LogsViewModel;
+
+            ContextMediator
+                .AddModuleReference(InstrumentalViewModel)
+                .AddModuleReference(SettingsViewModel)
+                .AddModuleReference(MeasurementsViewModel)
+                .AddModuleReference(DataBaseViewModel)
+                .AddModuleReference(LogsViewModel);
 
             shell
-                .AddView(InstrumentalViewModel)
-                .AddView(SettingsViewModel)
-                .AddView(MeasurementsViewModel)
-                .AddView(DataBaseViewModel)
-                .AddView(LogsViewModel);
+                .AddView(InstrumentalView)
+                .AddView(SettingsView)
+                .AddView(MeasurementsView)
+                .AddView(DataBaseView)
+                .AddView(LogsView);
 
             var mainWindow = new MainWindow();
             mainWindow.DataContext = shell;

@@ -38,7 +38,7 @@ namespace ExaminationProgram.Modules.InstrumentalModule
             ConnectCommand = new DelegateCommand(() =>
             {
                 SelectedInstrument.IsConnected = true;
-                contextMediator.SendInstrument(this);
+            
                 IconName = "appbar_connect";
                
             });

@@ -5,49 +5,34 @@ using ExaminationProgram.Modules.SettingsModule;
 using ExaminationProgram.Modules.DataBaseModule;
 using ExaminationProgram.Modules.InstrumentalModule;
 using ExaminationProgram.Modules.MeasurementsModule;
+using System.Collections.Generic;
+using System;
 
 namespace ExaminationProgram
 {
     public class ContextMediator : ObservableBase
     {
-        private InstrumentalViewModel instrumentalViewModel;
-        private SettingsViewModel settingsViewModel;
-        private MeasurementsViewModel measurementsViewModel;
-        private DataBaseViewModel dataBaseViewModel;
-        private LogsViewModel logsViewModel;
+        private IDictionary<Type, BaseViewModel> modulesReferences
+        { get; set; } 
 
-        public InstrumentalViewModel InstrumentalViewModel
+        public ContextMediator AddModuleReference<T>(T viewModel)
+            where T : BaseViewModel
         {
-            get => instrumentalViewModel;
-            set => SetValue(ref instrumentalViewModel,  value);
-        }
-        public SettingsViewModel SettingsViewModel
-        {
-            get => settingsViewModel;
-            set => SetValue(ref settingsViewModel, value);
-        }
-        public MeasurementsViewModel MeasurementsViewModel
-        {
-            get => measurementsViewModel;
-            set => SetValue(ref measurementsViewModel, value);
-        }
-        public DataBaseViewModel DataBaseViewModel
-        {
-            get => dataBaseViewModel;
-            set => SetValue(ref dataBaseViewModel, value);
-        }
-        public LogsViewModel LogsViewModel
-        {
-            get => logsViewModel;
-            set => SetValue(ref logsViewModel, value);
-        }
-
-        public void SendInstrument (InstrumentalViewModel instrumentalViewModel)
-        {
-            if (instrumentalViewModel.SelectedInstrument.IsConnected)
+            //TODO check is module exists
+            if (modulesReferences.ContainsKey(typeof(T)))
             {
-                MeasurementsViewModel.ConnectedInstruments.Add(InstrumentalViewModel.SelectedInstrument.Name);
+                throw new Exception("Данный объект уже добавлен");
             }
+            modulesReferences.Add(typeof(T), viewModel);
+            return this;
+        }
+
+        public T GetModule<T>()
+            where T : BaseViewModel
+            => (T)modulesReferences[typeof(T)];    
+        public ContextMediator()
+        {
+            modulesReferences = new Dictionary<Type, BaseViewModel>();
         }
     }
 }
