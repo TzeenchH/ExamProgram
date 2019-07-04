@@ -1,0 +1,79 @@
+﻿<mah:MetroWindow
+    x:Class="ExaminationProgram.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ExaminationProgram"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:beh="clr-namespace:ExaminationProgram.Helpers"
+    Title="{Binding AppName}"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance local:Shell}"
+    Background="{DynamicResource MainLayout}"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <DockPanel>
+        <TextBlock
+            HorizontalAlignment="Center"
+            DockPanel.Dock="Top"
+            FontFamily="Century Gothic"
+            FontSize="25"
+            Foreground="White"
+            Text="АИК" />
+        <mah:MetroAnimatedTabControl
+            ItemsSource="{Binding Views}"
+            SelectedIndex="0"
+            TabStripPlacement="Left">
+            <mah:MetroAnimatedTabControl.Resources>
+                <Style TargetType="mah:MetroTabItem">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontFamily" Value="Century Gothic" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <DockPanel Margin="15,5,5,5">
+                                    <Rectangle
+                                        Name="IconName"
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,4,1"
+                                        VerticalAlignment="Center"
+                                        Fill="{DynamicResource AccentColorBrush}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Uniform" />
+                                        </Rectangle.OpacityMask>
+                                        <i:Interaction.Behaviors>
+                                            <beh:IconBehaviour IconName="{Binding DataContext.IconName }"/>
+                                        </i:Interaction.Behaviors>
+                                    </Rectangle>
+                                    <Border
+                                        x:Name="PART_Module"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        CornerRadius="5">
+                                        <TextBlock
+                                            Height="20"
+                                            FontFamily="Century Gothic"
+                                            FontSize="14"
+                                            Text="{Binding DataContext.Title}" />
+                                    </Border>
+                                </DockPanel>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="PART_Module" Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="PART_Module" Property="Opacity" Value="0.5" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </mah:MetroAnimatedTabControl.Resources>
+        </mah:MetroAnimatedTabControl>
+    </DockPanel>
+</mah:MetroWindow>
