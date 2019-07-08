@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstractions\BaseCalibrationStep.cs" />
     <Compile Include="Abstractions\BaseInstrument.cs" />
     <Compile Include="Abstractions\BaseSetting.cs" />
     <Compile Include="ContextMediator.cs" />
@@ -72,18 +73,31 @@
     <Compile Include="Helpers\IconBehaviour.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />
     <Compile Include="Instruments\SignalGenerator.cs" />
+    <Compile Include="Interfaces\IActive.cs" />
     <Compile Include="Interfaces\IContextMediator.cs" />
     <Compile Include="Interfaces\IFiltering.cs" />
+    <Compile Include="Interfaces\IHasDescription.cs" />
+    <Compile Include="Interfaces\IHasError.cs" />
     <Compile Include="Interfaces\IHasIconName.cs" />
     <Compile Include="Interfaces\IHasName.cs" />
+    <Compile Include="Interfaces\ICompleted.cs" />
+    <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\ISetting.cs" />
     <Compile Include="Interfaces\IsVisible.cs" />
+    <Compile Include="Modules\CalibrationModule\CalibrationSteps\CalibrationStep1.cs" />
+    <Compile Include="Modules\CalibrationModule\CalibrationSteps\CalibrationStep2.cs" />
+    <Compile Include="Modules\CalibrationModule\CalibrationViewModel.cs" />
+    <Compile Include="Modules\CalibrationModule\CalibratonView.xaml.cs">
+      <DependentUpon>CalibratonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\SettingsModule\SettingsGroup.cs" />
     <Compile Include="Abstractions\BaseGroup.cs" />
     <Compile Include="Modules\SettingsModule\Settings\DoubleSetting.cs" />
     <Compile Include="Modules\SettingsModule\Settings\IntSetting.cs" />
     <Compile Include="Modules\SettingsModule\SettingsGroupsContainer.cs" />
     <Compile Include="Shell.cs" />
+    <Compile Include="Wizard\Wizard.cs" />
+    <Compile Include="Wizard\WizardStep.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\MeasurementsModule\MeasurementsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\CalibrationModule\CalibratonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

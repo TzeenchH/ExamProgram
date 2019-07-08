@@ -144,7 +144,7 @@
                 </Border.Effect>
 
                 <Grid
-                    Width="300"
+                    Width="350"
                     Height="100"
                     Margin="5"
                     HorizontalAlignment="Center"
@@ -189,13 +189,23 @@
                         x:Name="Value"
                         Width="180"
                         Height="25"
-                        Margin="0,5,30,0"
+                        Margin="0,5,80,0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BorderBrush="Black"
                         BorderThickness="1.25"
                         FontSize="16"
                         Text="111" />
+                    <Button
+                        Width="50"
+                        Height="30"
+                        Margin="0,5,10,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="{DynamicResource AccentColorBrush}"
+                        BorderBrush="Black"
+                        BorderThickness="1.25"
+                        Content="Add" />
                 </Grid>
             </Border>
         </DockPanel>

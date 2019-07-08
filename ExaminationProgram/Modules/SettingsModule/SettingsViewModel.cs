@@ -5,11 +5,12 @@ using ExaminationProgram.Interfaces;
 using ExaminationProgram.Abstractions;
 
 namespace ExaminationProgram.Modules.SettingsModule
-{
+{   
     public class SettingsViewModel : BaseViewModel
     {
         private string findSetting;
         private ICommand clearCommand;
+        private ICommand addValueCommand;
         public IList<BaseGroup> groups;
         private ISetting selectedSetting;
 
@@ -17,6 +18,12 @@ namespace ExaminationProgram.Modules.SettingsModule
         {
             get => clearCommand;
             set => SetValue(ref clearCommand, value);
+        }
+
+        public ICommand AddValueCommand
+        {
+            get => addValueCommand;
+            set => SetValue ( ref addValueCommand, value);
         }
 
         public IList<BaseGroup> Groups
@@ -29,14 +36,18 @@ namespace ExaminationProgram.Modules.SettingsModule
         {
             ClearCommand = new DelegateCommand(() =>
             FindSetting = null);
+            AddValueCommand = new DelegateCommand(() =>
+            {
+             //SelectedSetting.Value.Add()
+            });
         }
 
         public ISetting SelectedSetting
         {
             get => selectedSetting;
-            set 
+            set
             {
-                SetValue(ref selectedSetting, value);               
+                SetValue(ref selectedSetting, value);
             }
         }
         public string FindSetting

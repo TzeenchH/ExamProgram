@@ -1,11 +1,12 @@
-﻿using ExaminationProgram.Helpers;
+﻿using System.Collections.Generic;
+using ExaminationProgram.Helpers;
 using ExaminationProgram.Interfaces;
 
 namespace ExaminationProgram.Abstractions
 {
     public abstract class BaseSetting<T> : ObservableBase, ISetting
     {
-        private T _value;
+        private List<T> _value;
         private string name;
         private string dimention;
         private bool visible;
@@ -15,7 +16,7 @@ namespace ExaminationProgram.Abstractions
             get => visible;
             set => SetValue(ref visible, value);      
         } 
-        public T Value
+        public List<T> Value
         {
             get => _value;
             set => SetValue(ref _value, value);
