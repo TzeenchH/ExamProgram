@@ -10,14 +10,6 @@ namespace ExaminationProgram.Modules.CalibrationModule
     {
         private ICommand nextStepCommand;
         private ICommand previousStepCommand;
-        private IList<BaseCalibrationStep> calibrationSteps;
-
-        public IList<BaseCalibrationStep> CalibrationSteps
-        {
-            get => calibrationSteps;
-            set => SetValue(ref calibrationSteps, value);
-        }
-
         public ICommand NextStepCommand
         {
             get => nextStepCommand;
@@ -28,19 +20,8 @@ namespace ExaminationProgram.Modules.CalibrationModule
             get => previousStepCommand;
             set => SetValue(ref previousStepCommand, value);
         }
-        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator, params BaseCalibrationStep[] calibrationSteps) : base(title, iconName, contextMediator)
-        {
-            CalibrationSteps = calibrationSteps;
-            //foreach (string instrName in contextMediator.GetModule<InstrumentalViewModel>().Instruments.Select(instr => instr.Name))
-            //{
-            //    ConnectedInstruments.Add(instrName);
-            //}
-            //foreach (string settName in contextMediator.GetModule<SettingsModule.SettingsViewModel>().groups.Select(sett => sett.Settings.Select(name => name.Name)))
-            //{
-
-            //}
-
-            
+        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator) : base(title, iconName, contextMediator)
+        {      
         }
 
 

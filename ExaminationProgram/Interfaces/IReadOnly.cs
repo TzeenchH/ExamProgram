@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExaminationProgram.Interfaces
 {
-    public interface IActive
+    public interface IReadOnly
     {
-        bool IsActive { get; set; }
+        bool IsReadOnly { get; set; }
     }
 }

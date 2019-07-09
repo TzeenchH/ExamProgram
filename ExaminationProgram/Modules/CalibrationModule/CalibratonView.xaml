@@ -5,66 +5,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExaminationProgram.Modules.CalibrationModule"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     d:DataContext="{d:DesignInstance local:CalibrationViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ModuleLayout}"
     mc:Ignorable="d">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="0.2*" />
-        </Grid.RowDefinitions>
-        <ListBox
-            Grid.Column="1"
-            Margin="10"
-            BorderThickness="2"
-            ItemsSource="{Binding CalibrationSteps}">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ListBox
-                                   >
 
-                                </ListBox>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>           
-        </ListBox>
+        <mah:MetroAnimatedTabControl>
+            <mah:MetroTabItem>
+                <mah:MetroTabItem.Header>
+                    <TextBlock Text="header"/>
+                </mah:MetroTabItem.Header>
+                <mah:MetroTabItem.Content>
+                    <ListBox    
+                    Margin="10"
+                    BorderThickness="2">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
 
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="130"
-            Height="30"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Background="{DynamicResource AccentColorBrush}"
-            BorderBrush="Black"
-            BorderThickness="1.25"
-            Content="предыдущий шаг"
-            FontSize="11" />
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="130"
-            Height="30"
-            Margin="5,0,10,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Background="{DynamicResource AccentColorBrush}"
-            BorderBrush="Black"
-            BorderThickness="1.25"
-            Content="следующий шаг"
-            FontSize="11" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </mah:MetroTabItem.Content>
+            </mah:MetroTabItem>
+        <!--<mah:MetroTabItem>
+            <mah:MetroTabItem.Header>
+                <TextBlock Text="header2"/>
+            </mah:MetroTabItem.Header>
+            </mah:MetroTabItem.Content>
+        <mah:MetroTabItem.Content>
+            <ItemS
+        </mah:MetroTabItem>-->
+        </mah:MetroAnimatedTabControl>
     </Grid>
 </UserControl>

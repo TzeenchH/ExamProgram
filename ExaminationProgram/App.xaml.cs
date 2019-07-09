@@ -1,11 +1,10 @@
 ﻿using System.Windows;
-using System.Linq;
+using ExaminationProgram.Wizard;
 using ExaminationProgram.Instruments;
 using ExaminationProgram.Modules.LogsModule;
 using ExaminationProgram.Modules.DataBaseModule;
 using ExaminationProgram.Modules.SettingsModule;
 using ExaminationProgram.Modules.CalibrationModule;
-using ExaminationProgram.Modules.CalibrationModule.CalibrationSteps;
 using ExaminationProgram.Modules.InstrumentalModule;
 using ExaminationProgram.Modules.MeasurementsModule;
 using ExaminationProgram.Modules.SettingsModule.Settings;
@@ -23,6 +22,7 @@ namespace ExaminationProgram
             var DataBaseView = new DataBaseView();
             var LogsView = new LogsView();
             var CalibrationView = new CalibrationView();
+            var WizardView = new WizardView();
 
             var ContextMediator = new ContextMediator();
             var SettingsGroupsContainer = new SettingsGroupsContainer(
@@ -41,7 +41,8 @@ namespace ExaminationProgram
             var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
-            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, new CalibrationStep1("Калибровка приборов") { CalibratedParemetres = ContextMediator.GetModule<InstrumentalViewModel>().Instruments.Select(instr => instr.Name) }, new CalibrationStep2("Калибровка настроек") { CalibratedParemetres });
+            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator);
+            var SetupWizard = new SetupWizard(ContextMediator);
 
             InstrumentalView.DataContext = InstrumentalViewModel;
             SettingsView.DataContext = SettingsViewModel;
@@ -49,7 +50,7 @@ namespace ExaminationProgram
             DataBaseView.DataContext = DataBaseViewModel;
             LogsView.DataContext = LogsViewModel;
             CalibrationView.DataContext = CalibrationViewModel;
-
+            WizardView.DataContext = SetupWizard;
             ContextMediator
                 .AddModuleReference(InstrumentalViewModel)
                 .AddModuleReference(SettingsViewModel)

@@ -22,7 +22,7 @@
             HorizontalAlignment="Center"
             HorizontalContentAlignment="Center"
             Background="Transparent"
-            Focusable="False"           
+            Focusable="False"
             ItemsSource="{Binding Instruments}"
             SelectedItem="{Binding SelectedInstrument}">
             <ListBox.ItemContainerStyle>
@@ -47,9 +47,9 @@
                                             <TextBlock
                                                 x:Name="Name"
                                                 Margin="2,0,0,0"
-                                                FontFamily="Century Gothic"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Top"
+                                                FontFamily="Century Gothic"
                                                 FontSize="14"
                                                 Text="{Binding Name}" />
                                             <TextBox
@@ -136,14 +136,14 @@
             <Image Margin="10" Source="{Binding SelectedInstrument.ImageSourse}" />
             <Border
                 Grid.Row="1"
-                BorderBrush="{DynamicResource AccentColorBrush}"
                 Margin="4"
+                BorderBrush="{DynamicResource AccentColorBrush}"
                 BorderThickness="0,1.5,0,0">
                 <TextBlock
-                Margin="5"
-                FontSize="14"
-                Text="{Binding SelectedInstrument.Description}"
-                TextWrapping="Wrap" />
+                    Margin="5"
+                    FontSize="14"
+                    Text="{Binding SelectedInstrument.Description}"
+                    TextWrapping="Wrap" />
             </Border>
         </Grid>
     </Grid>

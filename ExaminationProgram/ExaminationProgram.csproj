@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,7 +65,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Abstractions\BaseCalibrationStep.cs" />
     <Compile Include="Abstractions\BaseInstrument.cs" />
     <Compile Include="Abstractions\BaseSetting.cs" />
     <Compile Include="ContextMediator.cs" />
@@ -73,7 +73,8 @@
     <Compile Include="Helpers\IconBehaviour.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />
     <Compile Include="Instruments\SignalGenerator.cs" />
-    <Compile Include="Interfaces\IActive.cs" />
+    <Compile Include="Interfaces\ILinledInstance.cs" />
+    <Compile Include="Interfaces\IReadOnly.cs" />
     <Compile Include="Interfaces\IContextMediator.cs" />
     <Compile Include="Interfaces\IFiltering.cs" />
     <Compile Include="Interfaces\IHasDescription.cs" />
@@ -84,8 +85,6 @@
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\ISetting.cs" />
     <Compile Include="Interfaces\IsVisible.cs" />
-    <Compile Include="Modules\CalibrationModule\CalibrationSteps\CalibrationStep1.cs" />
-    <Compile Include="Modules\CalibrationModule\CalibrationSteps\CalibrationStep2.cs" />
     <Compile Include="Modules\CalibrationModule\CalibrationViewModel.cs" />
     <Compile Include="Modules\CalibrationModule\CalibratonView.xaml.cs">
       <DependentUpon>CalibratonView.xaml</DependentUpon>
@@ -96,8 +95,11 @@
     <Compile Include="Modules\SettingsModule\Settings\IntSetting.cs" />
     <Compile Include="Modules\SettingsModule\SettingsGroupsContainer.cs" />
     <Compile Include="Shell.cs" />
-    <Compile Include="Wizard\Wizard.cs" />
+    <Compile Include="Wizard\SetupWizard.cs" />
     <Compile Include="Wizard\WizardStep.cs" />
+    <Compile Include="Wizard\WizardView.xaml.cs">
+      <DependentUpon>WizardView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -148,6 +150,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\MainTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\WizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

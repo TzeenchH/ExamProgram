@@ -4,15 +4,20 @@ using System;
 
 namespace ExaminationProgram.Wizard
 {
-    public class WizardStep : ObservableBase, IHasIconName, IHasName, IHasDescription, IActive, ISelectable, IHasError, ICompleted
+    public class WizardStep : ObservableBase, 
+                    IHasIconName, IHasName, IHasDescription,
+                    IReadOnly, ISelectable, IHasError, ICompleted,
+                    ILinledInstance<WizardStep>
     {
         private string iconName;
         private string name;
         private string description;
-        private bool isActive;
+        private bool isReadOnly;
         private bool isSelected;
         private string isError;
         private bool isCompleted;
+        private WizardStep prevStep;
+        private WizardStep nextStep;
 
         public string IconName
         {
@@ -29,10 +34,10 @@ namespace ExaminationProgram.Wizard
             get => description;
             set => SetValue(ref description, value);
         }
-        public bool IsActive
+        public bool IsReadOnly
         {
-            get => isActive;
-            set => SetValue(ref isActive, value);
+            get => isReadOnly;
+            set => SetValue(ref isReadOnly, value);
         }
         public bool IsSelected
         {
@@ -47,7 +52,18 @@ namespace ExaminationProgram.Wizard
         public bool IsCompleted
         {
             get => isCompleted;
-            set => SetValue (ref isCompleted, value);
+            set => SetValue(ref isCompleted, value);
+        }
+
+        public WizardStep PrevStep
+        {
+            get => prevStep;
+            set => SetValue(ref prevStep, value);
+        }
+        public WizardStep NextStep
+        {
+            get => nextStep;
+            set => SetValue(ref nextStep, value);
         }
         public Action<WizardStep, ContextMediator> ExecuteWizard { get; set; }
     }
