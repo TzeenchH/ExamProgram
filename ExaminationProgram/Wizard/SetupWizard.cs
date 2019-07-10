@@ -24,19 +24,16 @@ namespace ExaminationProgram.Wizard
         public SetupWizard(ContextMediator contextMediator, params WizardStep[] wizardSteps )
         {
             WizardSteps = new ObservableCollection<WizardStep>(wizardSteps);
-            //if (WizardSteps.Count==0)
+            
+            //SelectedStep = WizardSteps[0];
+            //NextStepCommand = new DelegateCommand(() =>
             //{
-            //    return;
-            //}
-            SelectedStep = WizardSteps[0];
-            NextStepCommand = new DelegateCommand(() =>
-            {
-                SelectedStep = SelectedStep.NextStep;
-            }, () => SelectedStep.NextStep != null);
-            PreviousStepCommand = new DelegateCommand(() =>
-            {
-                SelectedStep = SelectedStep.PrevStep;
-            }, () => SelectedStep.PrevStep != null);
+            //    SelectedStep = SelectedStep.NextStep;
+            //}, () => SelectedStep.NextStep != null);
+            //PreviousStepCommand = new DelegateCommand(() =>
+            //{
+            //    SelectedStep = SelectedStep.PrevStep;
+            //}, () => SelectedStep.PrevStep != null);
         }
 
         public WizardStep SelectedStep

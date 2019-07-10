@@ -97,6 +97,7 @@
     <Compile Include="Shell.cs" />
     <Compile Include="Wizard\SetupWizard.cs" />
     <Compile Include="Wizard\WizardStep.cs" />
+    <Compile Include="Wizard\WizardSubStep.cs" />
     <Compile Include="Wizard\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>

@@ -4,46 +4,65 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExaminationProgram.Modules.CalibrationModule"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     d:DataContext="{d:DesignInstance local:CalibrationViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ModuleLayout}"
     mc:Ignorable="d">
     <Grid>
-
-        <mah:MetroAnimatedTabControl>
-            <mah:MetroTabItem>
-                <mah:MetroTabItem.Header>
-                    <TextBlock Text="header"/>
-                </mah:MetroTabItem.Header>
-                <mah:MetroTabItem.Content>
-                    <ListBox    
-                    Margin="10"
-                    BorderThickness="2">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                </mah:MetroTabItem.Content>
-            </mah:MetroTabItem>
-        <!--<mah:MetroTabItem>
-            <mah:MetroTabItem.Header>
-                <TextBlock Text="header2"/>
-            </mah:MetroTabItem.Header>
-            </mah:MetroTabItem.Content>
-        <mah:MetroTabItem.Content>
-            <ItemS
-        </mah:MetroTabItem>-->
-        </mah:MetroAnimatedTabControl>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <Border BorderBrush="Black" BorderThickness="0.5">
+                        <TextBlock Text="Сохранённые калибровки" />
+                    </Border>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <ListBox 
+                            Margin="10" 
+                            BorderThickness="1.5"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            MinHeight="100"
+                            MinWidth="150">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <Button 
+                            Width="170"
+                            Height="28"
+                            Margin="10,0,0,10"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Background="{DynamicResource AccentColorBrush}"
+                            BorderBrush="Black"
+                            BorderThickness="1.25"
+                            Command="{Binding ClearSavedCalibrationsCommand}"
+                            Content="удалить все калибровки "
+                            FontSize="11" />
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Border BorderBrush="Black" BorderThickness="0.5">
+                        <TextBlock Text="Создать калибровку " />
+                    </Border>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Binding Path="WizardView" />
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

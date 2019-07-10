@@ -1,27 +1,39 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using System.Linq;
-using ExaminationProgram.Helpers;
+﻿using System.Windows.Input;
+using ExaminationProgram.Wizard;
+using System.Collections.ObjectModel;
 using ExaminationProgram.Abstractions;
-using ExaminationProgram.Modules.InstrumentalModule;
+using ExaminationProgram.Helpers;
+
 namespace ExaminationProgram.Modules.CalibrationModule
 {
     public class CalibrationViewModel : BaseViewModel
     {
-        private ICommand nextStepCommand;
-        private ICommand previousStepCommand;
-        public ICommand NextStepCommand
+        private WizardView wizardView;
+        private ObservableCollection<SetupWizard> savedCalibrations;
+        private ICommand clearSavedCalibrationsCommand;
+
+        public ObservableCollection<SetupWizard> SavedCalibrations
         {
-            get => nextStepCommand;
-            set => SetValue(ref nextStepCommand, value);
+            get => savedCalibrations;
+            set => SetValue(ref savedCalibrations, value);
         }
-        public ICommand PreviousStepCommand
+        public WizardView WizardView
         {
-            get => previousStepCommand;
-            set => SetValue(ref previousStepCommand, value);
+            get => wizardView;
+            set => SetValue(ref wizardView, value);
         }
-        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator) : base(title, iconName, contextMediator)
-        {      
+
+       
+        public ICommand ClearSavedCalibrationsCommand
+        {
+            get => clearSavedCalibrationsCommand;
+            set => SetValue(ref clearSavedCalibrationsCommand, value);
+        }
+        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator, WizardView wizardView) : base(title, iconName, contextMediator)
+        {
+            WizardView = wizardView;
+            ClearSavedCalibrationsCommand = new DelegateCommand(() =>
+                SavedCalibrations.Clear());
         }
 
 

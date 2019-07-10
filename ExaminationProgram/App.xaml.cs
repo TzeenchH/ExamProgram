@@ -41,7 +41,7 @@ namespace ExaminationProgram
             var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
-            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator);
+            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, WizardView);
             var SetupWizard = new SetupWizard(ContextMediator);
 
             InstrumentalView.DataContext = InstrumentalViewModel;
