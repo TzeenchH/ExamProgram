@@ -24,6 +24,49 @@ namespace ExaminationProgram
             var CalibrationView = new CalibrationView();
             var WizardView = new WizardView();
 
+            var SubStep1 = new ExecutableWizardStepBuilder()
+                .SetName("SubStep1.1").SetDescription("description for substep 1.1")
+                .SetReadOnly(false).SetSelectable(true).Build();
+            
+            var SubStep2 = new ExecutableWizardStepBuilder()
+                .SetName("SubStep1.2").SetDescription("description for substep 1.2")
+                .SetReadOnly(false).SetSelectable(true).Build();
+
+            var SubSubStep1 = new ExecutableWizardStepBuilder()
+                .SetName("SubSubStep1.3.1").SetDescription("description for subsubstep 1.3.1")
+                .SetReadOnly(false).SetSelectable(true).Build();
+
+            var SubSubStep2 = new ExecutableWizardStepBuilder()
+                .SetName("SubSubStep1.3.2").SetDescription("description for subsubstep 1.3.2")
+                .SetReadOnly(false).SetSelectable(true).Build();
+
+
+            var GrouppedStep1_3 = new WizardStepGroupBuilder()
+                .SetName("SubGruop1.3").SetDescription("description for subgroup 1.3")
+                .AddChildren(SubSubStep1)
+                .AddChildren(SubSubStep2).Build();
+
+            var GrouppedStep1 = new WizardStepGroupBuilder()
+                .SetName("Group1").SetDescription("description for subgroup 1")
+                .AddChildren(SubStep1)
+                .AddChildren(SubStep2)
+                .AddChildren(GrouppedStep1_3)
+                .Build();
+                                
+            var Step2 = new ExecutableWizardStepBuilder()
+                .SetName("Step2").SetIconName("appbar_cabinet")
+                .SetDescription("description for step 2").
+                SetReadOnly(false).SetSelectable(true).Build();
+
+            var SubStep3_1 = new ExecutableWizardStepBuilder()
+                .SetName("SubStep3.1").SetDescription("description for substep 3.1")
+                .SetReadOnly(false).SetSelectable(true).Build();
+
+            var GrouppedStep3 = new WizardStepGroupBuilder()
+                .SetName("Group3").SetDescription("description for group 3")
+                .AddChildren(SubStep3_1)
+                .Build();
+
             var ContextMediator = new ContextMediator();
             var SettingsGroupsContainer = new SettingsGroupsContainer(
                 new SettingsGroup("Group 1",

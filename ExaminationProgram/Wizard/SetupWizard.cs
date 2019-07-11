@@ -6,11 +6,11 @@ namespace ExaminationProgram.Wizard
 {
     public class SetupWizard : ObservableBase
     {
-        private WizardStep selectedStep;
+        private BaseWizardStep selectedStep;
         private ICommand nextStepCommand;
         private ICommand previousStepCommand;
 
-        public ObservableCollection<WizardStep> WizardSteps { get; set; }
+        public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }
         public ICommand NextStepCommand
         {
             get => nextStepCommand;
@@ -21,9 +21,9 @@ namespace ExaminationProgram.Wizard
             get => previousStepCommand;
             set => SetValue(ref previousStepCommand, value);
         }
-        public SetupWizard(ContextMediator contextMediator, params WizardStep[] wizardSteps )
+        public SetupWizard(ContextMediator contextMediator, params BaseWizardStep[] wizardSteps )
         {
-            WizardSteps = new ObservableCollection<WizardStep>(wizardSteps);
+            WizardSteps = new ObservableCollection<BaseWizardStep>(wizardSteps);
             
             //SelectedStep = WizardSteps[0];
             //NextStepCommand = new DelegateCommand(() =>
@@ -36,7 +36,7 @@ namespace ExaminationProgram.Wizard
             //}, () => SelectedStep.PrevStep != null);
         }
 
-        public WizardStep SelectedStep
+        public BaseWizardStep SelectedStep
         {
             get => selectedStep;
             set => SetValue(ref selectedStep, value);

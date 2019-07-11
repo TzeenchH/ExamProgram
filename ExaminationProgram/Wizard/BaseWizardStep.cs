@@ -4,10 +4,10 @@ using System;
 
 namespace ExaminationProgram.Wizard
 {
-    public class WizardStep : ObservableBase, 
+    public abstract class BaseWizardStep : ObservableBase, 
                     IHasIconName, IHasName, IHasDescription,
                     IReadOnly, ISelectable, IHasError, ICompleted,
-                    ILinledInstance<WizardStep>
+                    ILinledInstance<BaseWizardStep>
     {
         private string iconName;
         private string name;
@@ -16,8 +16,8 @@ namespace ExaminationProgram.Wizard
         private bool isSelected;
         private string isError;
         private bool isCompleted;
-        private WizardStep prevStep;
-        private WizardStep nextStep;
+        private BaseWizardStep prevStep;
+        private BaseWizardStep nextStep;
 
         public string IconName
         {
@@ -55,16 +55,17 @@ namespace ExaminationProgram.Wizard
             set => SetValue(ref isCompleted, value);
         }
 
-        public WizardStep PrevStep
+        public BaseWizardStep PrevStep
         {
             get => prevStep;
             set => SetValue(ref prevStep, value);
         }
-        public WizardStep NextStep
+        public BaseWizardStep NextStep
         {
             get => nextStep;
             set => SetValue(ref nextStep, value);
         }
-        public Action<WizardStep, ContextMediator> ExecuteWizard { get; set; }
+
+        
     }
 }

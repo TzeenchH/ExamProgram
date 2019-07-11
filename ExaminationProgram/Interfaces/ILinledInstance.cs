@@ -3,7 +3,7 @@
 namespace ExaminationProgram.Interfaces
 {
     //ILinkedStep
-    public interface ILinledInstance<TLinkedStep> where TLinkedStep : WizardStep
+    public interface ILinledInstance<TLinkedStep> where TLinkedStep : BaseWizardStep
     {
         TLinkedStep PrevStep { get; set; }
         TLinkedStep NextStep { get; set; }
