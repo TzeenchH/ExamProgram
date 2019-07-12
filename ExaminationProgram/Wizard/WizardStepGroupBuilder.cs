@@ -11,27 +11,13 @@ namespace ExaminationProgram.Wizard
     {
         public WizardStepGroupBuilder()
         {
-            executedWizardStep = new WizardStepGroup();
+            executedWizardStep = new WizardStepGroup() { Children = new List<BaseWizardStep>() };
         }
         public WizardStepGroupBuilder AddChildren (BaseWizardStep childWizardStep)
         {
             executedWizardStep.Children.Add(childWizardStep);
             return this;
-        }
-        
-        public WizardStepGroupBuilder Configure()
-        {
-            for (int i=0; i<=executedWizardStep.Children.Count; i++)
-            {                
-                executedWizardStep.Children[i].NextStep = executedWizardStep.Children[++i];
-                executedWizardStep.Children[i].PrevStep = executedWizardStep.Children[--i];
-                if (i == 0)
-                { executedWizardStep.Children[0].PrevStep = null; }
-                if (i == executedWizardStep.Children.Count)
-                { executedWizardStep.Children[i].NextStep = null; }
-            }
-        }
-
+        }             
         public WizardStepGroup Build()
         {
             return executedWizardStep;

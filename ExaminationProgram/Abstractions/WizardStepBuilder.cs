@@ -37,6 +37,12 @@ namespace ExaminationProgram.Abstractions
             return (TBuilder)this;
         }
 
-        
+        public TBuilder SetParent(BaseWizardStep parent)
+        {
+            executedWizardStep.Parent = parent;
+            return (TBuilder)this;
+        }
+
+
     }
 }

@@ -8,6 +8,7 @@ using ExaminationProgram.Modules.CalibrationModule;
 using ExaminationProgram.Modules.InstrumentalModule;
 using ExaminationProgram.Modules.MeasurementsModule;
 using ExaminationProgram.Modules.SettingsModule.Settings;
+using System.Collections.ObjectModel;
 
 namespace ExaminationProgram
 {
@@ -23,6 +24,7 @@ namespace ExaminationProgram
             var LogsView = new LogsView();
             var CalibrationView = new CalibrationView();
             var WizardView = new WizardView();
+
 
             var SubStep1 = new ExecutableWizardStepBuilder()
                 .SetName("SubStep1.1").SetDescription("description for substep 1.1")
@@ -68,6 +70,7 @@ namespace ExaminationProgram
                 .Build();
 
             var ContextMediator = new ContextMediator();
+            
             var SettingsGroupsContainer = new SettingsGroupsContainer(
                 new SettingsGroup("Group 1",
                     new DoubleSetting() { Name = "Setting1.1", Dimention = "Hz", Visible=true },
@@ -85,7 +88,15 @@ namespace ExaminationProgram
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
             var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, WizardView);
-            var SetupWizard = new SetupWizard(ContextMediator);
+
+            var SetupWizard = new SetupWizard();
+
+            var builder = SetupWizard.CreateBuilder().AddStep(GrouppedStep1)
+                .AddStep(Step2).AddStep(GrouppedStep3);
+                
+                builder.ConfigureWizard();
+
+            
 
             InstrumentalView.DataContext = InstrumentalViewModel;
             SettingsView.DataContext = SettingsViewModel;
