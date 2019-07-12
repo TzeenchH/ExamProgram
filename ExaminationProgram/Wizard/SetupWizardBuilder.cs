@@ -39,17 +39,17 @@ namespace ExaminationProgram.Wizard
                 }
                 else
                 {
-                    if (i == 0)
+                    if (i == 0 && bases.Count!=1)
                     {
                         bases[i].PrevStep = null;
                         bases[i].NextStep = bases[++i];
                     }
-                    else if (i == bases.Count)
+                    else if (i>0 && i == bases.Count)
                     {
                         bases[i].PrevStep = bases[--i];
                         bases[i].NextStep = null;
                     }
-                    else
+                    else if (i>0 && i<bases.Count)
                     {
                         bases[i].PrevStep = bases[--i];
                         bases[i].NextStep = bases[++i];

@@ -25,16 +25,15 @@ namespace ExaminationProgram.Wizard
         }
         public SetupWizard()
         {
-            //WizardSteps = new ObservableCollection<BaseWizardStep>(wsteps);
-            //SelectedStep = WizardSteps[0];
-            //NextStepCommand = new DelegateCommand(() =>
-            //{
-            //    SelectedStep = SelectedStep.NextStep;
-            //}, () => SelectedStep.NextStep != null);
-            //PreviousStepCommand = new DelegateCommand(() =>
-            //{
-            //    SelectedStep = SelectedStep.PrevStep;
-            //}, () => SelectedStep.PrevStep != null);
+            
+            NextStepCommand = new DelegateCommand(() =>
+            {
+                SelectedStep = SelectedStep.NextStep;
+            }, () => SelectedStep.NextStep != null);
+            PreviousStepCommand = new DelegateCommand(() =>
+            {
+                SelectedStep = SelectedStep.PrevStep;
+            }, () => SelectedStep.PrevStep != null);
         }
 
         public BaseWizardStep SelectedStep

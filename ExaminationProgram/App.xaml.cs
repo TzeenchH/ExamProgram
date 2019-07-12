@@ -91,10 +91,10 @@ namespace ExaminationProgram
 
             var SetupWizard = new SetupWizard();
 
-            var builder = SetupWizard.CreateBuilder().AddStep(GrouppedStep1)
-                .AddStep(Step2).AddStep(GrouppedStep3);
-                
-                builder.ConfigureWizard();
+            SetupWizard.CreateBuilder().AddStep(GrouppedStep1)
+                .AddStep(Step2).AddStep(GrouppedStep3).ConfigureWizard();
+
+            SetupWizard.SelectedStep = SetupWizard.WizardSteps[0];
 
             
 
