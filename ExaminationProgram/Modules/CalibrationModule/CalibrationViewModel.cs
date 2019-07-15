@@ -8,9 +8,16 @@ namespace ExaminationProgram.Modules.CalibrationModule
 {
     public class CalibrationViewModel : BaseViewModel
     {
-        private WizardView wizardView;
+        private WizardView _wizardView;
         private ObservableCollection<SetupWizard> savedCalibrations;
         private ICommand clearSavedCalibrationsCommand;
+        private SetupWizard _setupWizard;
+
+        private SetupWizard SetupWizard
+        {
+            get => _setupWizard;
+            set => SetValue ( ref _setupWizard, value);
+        }
 
         public ObservableCollection<SetupWizard> SavedCalibrations
         {
@@ -19,19 +26,21 @@ namespace ExaminationProgram.Modules.CalibrationModule
         }
         public WizardView WizardView
         {
-            get => wizardView;
-            set => SetValue(ref wizardView, value);
+            get => _wizardView;
+            set => SetValue(ref _wizardView, value);
         }
 
-       
+
         public ICommand ClearSavedCalibrationsCommand
         {
             get => clearSavedCalibrationsCommand;
             set => SetValue(ref clearSavedCalibrationsCommand, value);
         }
-        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator, WizardView wizardView) : base(title, iconName, contextMediator)
+        public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator, WizardView wizardView, SetupWizard setupWizard) : base(title, iconName, contextMediator)
         {
             WizardView = wizardView;
+            SetupWizard = setupWizard;
+            WizardView.DataContext = SetupWizard;
             ClearSavedCalibrationsCommand = new DelegateCommand(() =>
                 SavedCalibrations.Clear());
         }

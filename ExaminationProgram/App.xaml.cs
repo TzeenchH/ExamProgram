@@ -87,14 +87,9 @@ namespace ExaminationProgram
             var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
-            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, WizardView);
 
-            var SetupWizard = new SetupWizard();
-
-            var builder = SetupWizard.CreateBuilder().AddStep(GrouppedStep1)
-                .AddStep(Step2).AddStep(GrouppedStep3);
-                
-                builder.ConfigureWizard();
+            var SetupWizard = new SetupWizardBuilder().AddStep(GrouppedStep1)
+                 .AddStep(Step2).AddStep(GrouppedStep3).ConfigureWizard().Build();
 
             
 
@@ -103,8 +98,11 @@ namespace ExaminationProgram
             MeasurementsView.DataContext = MeasurementsViewModel;
             DataBaseView.DataContext = DataBaseViewModel;
             LogsView.DataContext = LogsViewModel;
-            CalibrationView.DataContext = CalibrationViewModel;
             WizardView.DataContext = SetupWizard;
+
+            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, WizardView , SetupWizard);
+            CalibrationView.DataContext = CalibrationViewModel;
+
             ContextMediator
                 .AddModuleReference(InstrumentalViewModel)
                 .AddModuleReference(SettingsViewModel)
