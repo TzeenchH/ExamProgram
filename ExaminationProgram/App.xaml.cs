@@ -88,19 +88,8 @@ namespace ExaminationProgram
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
 
-<<<<<<< HEAD
             var SetupWizard = new SetupWizardBuilder().AddStep(GrouppedStep1)
                  .AddStep(Step2).AddStep(GrouppedStep3).ConfigureWizard().Build();
-=======
-            var SetupWizard = new SetupWizard();
-
-            SetupWizard.CreateBuilder().AddStep(GrouppedStep1)
-                .AddStep(Step2).AddStep(GrouppedStep3).ConfigureWizard();
-
-            SetupWizard.SelectedStep = SetupWizard.WizardSteps[0];
->>>>>>> 5194a59741eb7b90daa0a4dbeed2a34d78e45247
-
-            
 
             InstrumentalView.DataContext = InstrumentalViewModel;
             SettingsView.DataContext = SettingsViewModel;
