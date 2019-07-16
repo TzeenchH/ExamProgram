@@ -26,7 +26,10 @@ namespace ExaminationProgram.Wizard
         public SetupWizard()
         {
             
+<<<<<<< HEAD
             
+=======
+>>>>>>> 5194a59741eb7b90daa0a4dbeed2a34d78e45247
             NextStepCommand = new DelegateCommand(() =>
             {
                 SelectedStep = SelectedStep.NextStep;

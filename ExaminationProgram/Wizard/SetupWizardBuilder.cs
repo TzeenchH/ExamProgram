@@ -38,18 +38,34 @@ namespace ExaminationProgram.Wizard
                 k = i;
                 if (bases[i] is WizardStepGroup group)
                 {
+<<<<<<< HEAD
                     group.HasChildren = true;
                     bases[i].NextStep = group.Children[0];
                     group.Children[0].PrevStep =bases[i];
                     if (i>0)
+=======
+                    Configure(group.Children);
+                }
+                else
+                {
+                    if (i == 0 && bases.Count!=1)
+>>>>>>> 5194a59741eb7b90daa0a4dbeed2a34d78e45247
                     {
                         bases[k].PrevStep = bases[--k];
                     }
+<<<<<<< HEAD
                     if (i >0 && i < bases.Count )
+=======
+                    else if (i>0 && i == bases.Count)
+>>>>>>> 5194a59741eb7b90daa0a4dbeed2a34d78e45247
                     {
                         bases[k].NextStep = bases[++k];
                     }
+<<<<<<< HEAD
                     for (int j =0; j<group.Children.Count; j++)
+=======
+                    else if (i>0 && i<bases.Count)
+>>>>>>> 5194a59741eb7b90daa0a4dbeed2a34d78e45247
                     {
                         group.Children[j].Parent = group;                       
                     }
