@@ -31,8 +31,7 @@ namespace ExaminationProgram.Wizard
             return this;
         }
         public void Configure(IList<BaseWizardStep> bases, BaseWizardStep nstep)
-        {
-            int k;            
+        {                 
             for (int i = 0; i < bases.Count; i++)
             {
                 

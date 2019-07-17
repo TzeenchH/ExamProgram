@@ -3,8 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:beh="clr-namespace:ExaminationProgram.Helpers"
+    xmlns:conv="clr-namespace:ExaminationProgram.Helpers.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ic="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:ExaminationProgram.Wizard"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance local:SetupWizard}"
@@ -13,33 +15,118 @@
     Background="{DynamicResource ModuleLayout}"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <conv:BooleanToVisibilityConverter
+            x:Key="btvc"
+            False="Visible"
+            True="Collapsed" />
         <ControlTemplate x:Key="ExecutedWizardStep">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <Rectangle
-                    Name="IconName"
-                    Width="21"
-                    Height="21"
-                    Margin="0,0,5,0"
-                    VerticalAlignment="Center"
-                    Fill="{DynamicResource AccentColorBrush}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Uniform" />
-                    </Rectangle.OpacityMask>
-                    <i:Interaction.Behaviors>
-                        <beh:IconBehaviour IconName="{Binding IconName}" />
-                    </i:Interaction.Behaviors>
-                </Rectangle>
-                <TextBlock
-                    x:Name="stName"
-                    FontSize="15"
-                    Text="{Binding Name}" />
+            <StackPanel
+                x:Name="InnerSteps"
+                Margin="5"
+                Orientation="Horizontal">
+                <Border BorderThickness="0,0,0,0.5">
+                    <StackPanel Orientation="Horizontal">
+                        <ic:PackIconMaterial
+                            Width="21"
+                            Height="21"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource AccentColorBrush}"
+                            Kind="{Binding IconName}" />
+                        <TextBlock
+                            x:Name="stName"
+                            FontSize="15"
+                            Text="{Binding Name}" />
+                        <ic:PackIconMaterial
+                            Width="10"
+                            Height="10"
+                            Margin="20,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Green"
+                            Kind="Exclamation"
+                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                        <ic:PackIconMaterial
+                            Width="10"
+                            Height="10"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Red"
+                            Kind="AlertCircleOutline"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </ControlTemplate>
-        <ControlTemplate x:Key="WizardStepGroup" />
+        <ControlTemplate x:Key="WizardStepGroup">
+            <Expander
+                Margin="5,0,5,0"
+                Background="Transparent"
+                BorderThickness="0,0,0,0.5">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+
+                        <ic:PackIconMaterial
+                            Width="21"
+                            Height="21"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource AccentColorBrush}"
+                            Kind="{Binding IconName}"
+                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                        <TextBlock Text="{Binding Name}" />
+                        <ic:PackIconMaterial
+                            Width="10"
+                            Height="10"
+                            Margin="20,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Green"
+                            Kind="Exclamation" />
+                        <ic:PackIconMaterial
+                            Width="10"
+                            Height="10"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Red"
+                            Kind="AlertCircleOutline"/>
+                    </StackPanel>
+                </Expander.Header>
+                <DockPanel>
+                    <ListBox
+                        Margin="5,0,0,0"
+                        Background="Transparent"
+                        ItemsSource="{Binding Children}"
+                        SelectedValue="{Binding DataContext.SelectedStep, RelativeSource={RelativeSource AncestorType=local:SetupWizard, Mode=FindAncestor}}">
+                        <ListBox.ItemContainerStyle>
+                            <Style x:Name="ItemStyle" TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <ContentControl Content="{Binding}">
+                                                <ContentControl.Resources>
+                                                    <DataTemplate DataType="{x:Type local:ExecutableWizardStep}">
+                                                        <ContentControl Template="{DynamicResource ExecutedWizardStep}" />
+                                                    </DataTemplate>
+                                                    <DataTemplate DataType="{x:Type local:WizardStepGroup}">
+                                                        <ContentControl Template="{DynamicResource WizardStepGroup}" />
+                                                    </DataTemplate>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </DockPanel>
+            </Expander>
+        </ControlTemplate>
     </UserControl.Resources>
     <Grid>
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition />
@@ -60,71 +147,18 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <Border
-                                    Margin="5"
-                                    Background="White"
-                                    BorderBrush="Black"
-                                    BorderThickness="1"
-                                    CornerRadius="3">
-                                    <Border.Effect>
-                                        <DropShadowEffect
-                                            BlurRadius="4"
-                                            Direction="225"
-                                            Opacity="0.5"
-                                            ShadowDepth="3"
-                                            Color="Gray" />
-                                    </Border.Effect>
+                                <ContentControl Content="{Binding}">
+                                    <ContentControl.Resources>
+                                        <DataTemplate DataType="{x:Type local:ExecutableWizardStep}">
+                                            <ContentControl Template="{StaticResource ExecutedWizardStep}" />
+                                        </DataTemplate>
+                                        <DataTemplate DataType="{x:Type local:WizardStepGroup}">
+                                            <ContentControl Template="{StaticResource WizardStepGroup}" />
+                                        </DataTemplate>
+                                    </ContentControl.Resources>
+                                </ContentControl>
 
-                                    <StackPanel Margin="5" Orientation="Horizontal">
-                                        <ListBox x:Name="StepsList" ItemsSource="{Binding}">
-                                            <ListBox.ItemContainerStyle>
-                                                <Style TargetType="ListBoxItem">
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate>
-                                                                <ContentControl Content="{Binding}">
-                                                                    <ContentControl.Resources>
-                                                                        <DataTemplate>
-                                                                            <ContentControl Template="{StaticResource ExecutedWizardStep}" />
-                                                                        </DataTemplate>
-                                                                        <DataTemplate>
-                                                                            <ContentControl Template="{StaticResource WizardStepGroup}" />
-                                                                        </DataTemplate>
-                                                                    </ContentControl.Resources>
-                                                                </ContentControl>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </ListBox.ItemContainerStyle>
-                                        </ListBox>
-                                        <Rectangle
-                                            Name="IconName"
-                                            Width="21"
-                                            Height="21"
-                                            Margin="0,0,5,0"
-                                            VerticalAlignment="Center"
-                                            Fill="{DynamicResource AccentColorBrush}">
-                                            <Rectangle.OpacityMask>
-                                                <VisualBrush Stretch="Uniform" />
-                                            </Rectangle.OpacityMask>
-                                            <i:Interaction.Behaviors>
-                                                <beh:IconBehaviour IconName="{Binding IconName}" />
-                                            </i:Interaction.Behaviors>
-                                        </Rectangle>
-                                        <TextBlock
-                                            x:Name="stName"
-                                            FontSize="15"
-                                            Text="{Binding Name}" />
-                                    </StackPanel>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="ListBox.SelectedItem" Value="True">
-                                        <Setter TargetName="stName" Property="Foreground" Value="{DynamicResource AccentColorBrush}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
                             </ControlTemplate>
-
                         </Setter.Value>
                     </Setter>
                 </Style>

@@ -27,10 +27,12 @@ namespace ExaminationProgram.Wizard
         {
             NextStepCommand = new DelegateCommand(() =>
             {
+                SelectedStep.IsCompleted = true;
                 SelectedStep = SelectedStep.NextStep;
             }, () => SelectedStep.NextStep != null);
             PreviousStepCommand = new DelegateCommand(() =>
             {
+                SelectedStep.IsCompleted = false;
                 SelectedStep = SelectedStep.PrevStep;
             }, () => SelectedStep.PrevStep != null);
         }

@@ -42,6 +42,9 @@
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro.IconPacks, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MahApps.Metro.IconPacks.2.3.0\lib\net46\MahApps.Metro.IconPacks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -69,6 +72,7 @@
     <Compile Include="Abstractions\BaseSetting.cs" />
     <Compile Include="ContextMediator.cs" />
     <Compile Include="Helpers\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Converters\CompletedToForegroundConverter.cs" />
     <Compile Include="Helpers\Extentions\EnumerableExtentions.cs" />
     <Compile Include="Helpers\IconBehaviour.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />

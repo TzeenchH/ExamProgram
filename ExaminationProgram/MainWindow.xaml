@@ -2,12 +2,12 @@
     x:Class="ExaminationProgram.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:beh="clr-namespace:ExaminationProgram.Helpers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:ExaminationProgram"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:beh="clr-namespace:ExaminationProgram.Helpers"
     Title="{Binding AppName}"
     Width="800"
     Height="450"
@@ -46,7 +46,7 @@
                                             <VisualBrush Stretch="Uniform" />
                                         </Rectangle.OpacityMask>
                                         <i:Interaction.Behaviors>
-                                            <beh:IconBehaviour IconName="{Binding DataContext.IconName }"/>
+                                            <beh:IconBehaviour IconName="{Binding DataContext.IconName}" />
                                         </i:Interaction.Behaviors>
                                     </Rectangle>
                                     <Border

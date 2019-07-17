@@ -56,7 +56,7 @@ namespace ExaminationProgram
                 .Build();
                                 
             var Step2 = new ExecutableWizardStepBuilder()
-                .SetName("Step2").SetIconName("appbar_cabinet")
+                .SetName("Step2").SetIconName("Settings")
                 .SetDescription("description for step 2").
                 SetReadOnly(false).SetSelectable(true).Build();
 
