@@ -25,6 +25,11 @@ namespace ExaminationProgram.Wizard
             executedWizardStep.PrevStep = prevStep;
             return this;
         }
+        public ExecutableWizardStepBuilder Last(bool last)
+        {
+            executedWizardStep.IsLast = last;
+            return this;
+        }
 
         public ExecutableWizardStep Build()
         {

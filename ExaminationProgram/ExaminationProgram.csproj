@@ -80,7 +80,7 @@
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IHasChildren.cs" />
     <Compile Include="Interfaces\IHasParent.cs" />
-    <Compile Include="Interfaces\ILinledInstance.cs" />
+    <Compile Include="Interfaces\ILinkedInstance.cs" />
     <Compile Include="Interfaces\IReadOnly.cs" />
     <Compile Include="Interfaces\IContextMediator.cs" />
     <Compile Include="Interfaces\IFiltering.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="Interfaces\ICompleted.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\ISetting.cs" />
+    <Compile Include="Interfaces\ILast.cs" />
     <Compile Include="Interfaces\IsVisible.cs" />
     <Compile Include="Modules\CalibrationModule\CalibrationViewModel.cs" />
     <Compile Include="Modules\CalibrationModule\CalibratonView.xaml.cs">

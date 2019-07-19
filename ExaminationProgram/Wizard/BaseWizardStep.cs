@@ -7,7 +7,7 @@ namespace ExaminationProgram.Wizard
     public abstract class BaseWizardStep : ObservableBase,
                     IHasIconName, IHasName, IHasDescription,
                     IReadOnly, ISelectable, IHasError, ICompleted,
-                    ILinledInstance<BaseWizardStep>, IHasParent
+                    ILinkedInstance<BaseWizardStep>, IHasParent
     {
         private string iconName;
         private string name;

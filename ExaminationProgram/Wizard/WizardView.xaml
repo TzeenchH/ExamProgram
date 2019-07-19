@@ -54,45 +54,48 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="Red"
-                            Kind="AlertCircleOutline"/>
+                            Kind="AlertCircleOutline" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="WizardStepGroup">
             <Expander
+                IsExpanded="True"
                 Margin="5,0,5,0"
                 Background="Transparent"
                 BorderThickness="0,0,0,0.5">
                 <Expander.Header>
-                    <StackPanel Orientation="Horizontal">
-
-                        <ic:PackIconMaterial
-                            Width="21"
-                            Height="21"
-                            Margin="0,0,5,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="{DynamicResource AccentColorBrush}"
-                            Kind="{Binding IconName}"
-                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
-                        <TextBlock Text="{Binding Name}" />
-                        <ic:PackIconMaterial
-                            Width="10"
-                            Height="10"
-                            Margin="20,0,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="Green"
-                            Kind="Exclamation" />
-                        <ic:PackIconMaterial
-                            Width="10"
-                            Height="10"
-                            Margin="10,0,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="Red"
-                            Kind="AlertCircleOutline"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <ic:PackIconMaterial
+                                Width="21"
+                                Height="21"
+                                Margin="0,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource AccentColorBrush}"
+                                Kind="{Binding IconName}"
+                                Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                            <TextBlock Text="{Binding Name}" />
+                            <ic:PackIconMaterial
+                                Width="10"
+                                Height="10"
+                                Margin="20,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Green"
+                                Kind="Exclamation" />
+                            <ic:PackIconMaterial
+                                Width="10"
+                                Height="10"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Red"
+                                Kind="AlertCircleOutline" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding ExecutedCounts}" />
                     </StackPanel>
                 </Expander.Header>
                 <DockPanel>
@@ -100,7 +103,7 @@
                         Margin="5,0,0,0"
                         Background="Transparent"
                         ItemsSource="{Binding Children}"
-                        SelectedValue="{Binding DataContext.SelectedStep, RelativeSource={RelativeSource AncestorType=local:SetupWizard, Mode=FindAncestor}}">
+                        SelectedValue="{Binding DataContext.SelectedStep, RelativeSource={RelativeSource AncestorType=local:WizardView, Mode=FindAncestor}}">
                         <ListBox.ItemContainerStyle>
                             <Style x:Name="ItemStyle" TargetType="ListBoxItem">
                                 <Setter Property="Template">

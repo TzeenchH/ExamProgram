@@ -11,8 +11,21 @@ namespace ExaminationProgram.Wizard
         private BaseWizardStep selectedStep;
         private ICommand nextStepCommand;
         private ICommand previousStepCommand;
+        private string executedCounts;
+        private int i = 0;
 
-        public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }
+        public string ExecutedCounts
+        {
+            get => executedCounts;
+            set
+            {
+                executedCounts = $"{i}/3";
+                SetValue(ref executedCounts, value);
+            }
+        }
+
+        public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }       
+        
         public ICommand NextStepCommand
         {
             get => nextStepCommand;
@@ -25,6 +38,7 @@ namespace ExaminationProgram.Wizard
         }
         public SetupWizard()
         {
+            
             NextStepCommand = new DelegateCommand(() =>
             {
                 SelectedStep.IsCompleted = true;
@@ -42,7 +56,7 @@ namespace ExaminationProgram.Wizard
             get => selectedStep;
             set => SetValue(ref selectedStep, value);
         }
-        
+
         public static SetupWizardBuilder CreateBuilder()
         {
             return new SetupWizardBuilder();

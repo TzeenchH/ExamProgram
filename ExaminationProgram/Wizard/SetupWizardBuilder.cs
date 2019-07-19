@@ -10,7 +10,7 @@ namespace ExaminationProgram.Wizard
 {
     public class SetupWizardBuilder
     {        
-        protected SetupWizard setupWizard {get; set;}
+        protected SetupWizard setupWizard {get; set;}       
 
         public SetupWizardBuilder()
         {
@@ -27,40 +27,45 @@ namespace ExaminationProgram.Wizard
 
         public SetupWizardBuilder ConfigureWizard()
         {
-            Configure(setupWizard.WizardSteps, setupWizard.WizardSteps[1]);
+            if (setupWizard.WizardSteps.Count == 1)
+                Configure(setupWizard.WizardSteps, null);
+            else if (setupWizard.WizardSteps.Count > 1)
+                Configure(setupWizard.WizardSteps, setupWizard.WizardSteps[1]);
             return this;
         }
         public void Configure(IList<BaseWizardStep> bases, BaseWizardStep nstep)
-        {                 
+        {
+            BaseWizardStep pstep = null;
             for (int i = 0; i < bases.Count; i++)
-            {
-                
+            {                
                 if (bases[i] is WizardStepGroup group)
-                {  
-                    if (bases.GetType() == typeof(ObservableCollection<BaseWizardStep>) && i < bases.Count - 1) { nstep = bases[i+1]; }
-                    else if (bases.GetType() == typeof(ObservableCollection<BaseWizardStep>) && i == bases.Count - 1) { nstep = null; }
-                    group.HasChildren = true;
+                {
+                    var nextStep = i == bases.Count - 1 ? nstep : bases[i + 1] ;
+                    group.StepsCount = group.Children.Count;
+                    group.HasChildren = true;                  
                     bases[i].NextStep = group.Children[0];
-                    group.Children[0].PrevStep = bases[i];                   
+                    group.Children[0].PrevStep = bases[i];
+                    bases[i].PrevStep = pstep;
                     if (i > 0)
                     {
                         bases[i].PrevStep = bases[i-1];
-                    }
-                    if (i > 0 && i < bases.Count-1)
-                    {
-                        bases[i].NextStep = bases[i+1];
-                    }                                       
+                    }                                     
                     for (int j = 0; j < group.Children.Count; j++)
                     {
                         group.Children[j].Parent = group;
                     }
-                    Configure(group.Children, nstep);
+                    Configure(group.Children, nextStep);
                 }
                 else if (bases[i] is ExecutableWizardStep step)
                 {
+                   if (step.Parent == null)
+                        step.PrevStep = pstep;
                     if (bases.Count == 1)
                     {
                         step.NextStep = nstep;
+                        if (step.Parent == null)
+                            step.PrevStep = pstep;
+                        pstep = step;
                     }
                     if (i > 0 && i < bases.Count-1 && bases.Count != 1)
                     {
@@ -69,17 +74,25 @@ namespace ExaminationProgram.Wizard
                     }
                     else if (i == 0 && i < bases.Count && bases.Count != 1)
                     {
-                        step.NextStep = bases[i+1];
+                        step.NextStep = bases[i + 1];
+                            if (step.Parent == null)
+                            step.PrevStep = pstep;
                     }
                     else if (i > 0 && i == bases.Count - 1)
                     {
                         step.PrevStep = bases[i-1];
-                        step.NextStep = nstep;
+                        pstep = step;
+                        if (step.IsLast)
+                            step.NextStep = null;
+                        else
+                        step.NextStep = nstep;                                               
                     }
                 }
             }
             setupWizard.SelectedStep = bases[0];
-        }                                     
+        }        
+        
+       
         public SetupWizard Build()
         {
             return setupWizard;

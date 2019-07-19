@@ -27,46 +27,76 @@ namespace ExaminationProgram
 
 
             var SubStep1 = new ExecutableWizardStepBuilder()
-                .SetName("SubStep1.1").SetDescription("description for substep 1.1")
-                .SetReadOnly(false).SetSelectable(true).Build();
+                .SetName("SubStep1.1")
+                .SetDescription("description for substep 1.1")
+                .SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
             
             var SubStep2 = new ExecutableWizardStepBuilder()
-                .SetName("SubStep1.2").SetDescription("description for substep 1.2")
-                .SetReadOnly(false).SetSelectable(true).Build();
+                .SetName("SubStep1.2")
+                .SetDescription("description for substep 1.2")
+                .SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
 
             var SubSubStep1 = new ExecutableWizardStepBuilder()
-                .SetName("SubSubStep1.3.1").SetDescription("description for subsubstep 1.3.1")
-                .SetReadOnly(false).SetSelectable(true).Build();
+                .SetName("SubSubStep1.3.1")
+                .SetDescription("description for subsubstep 1.3.1")
+                .SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
 
             var SubSubStep2 = new ExecutableWizardStepBuilder()
-                .SetName("SubSubStep1.3.2").SetDescription("description for subsubstep 1.3.2")
-                .SetReadOnly(false).SetSelectable(true).Build();
+                .SetName("SubSubStep1.3.2")
+                .SetDescription("description for subsubstep 1.3.2")
+                .SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
 
 
             var GrouppedStep1_3 = new WizardStepGroupBuilder()
-                .SetName("SubGruop1.3").SetDescription("description for subgroup 1.3")
+                .SetName("SubGruop1.3")
+                .SetDescription("description for subgroup 1.3")
                 .AddChildren(SubSubStep1)
-                .AddChildren(SubSubStep2).Build();
+                .AddChildren(SubSubStep2)
+                .Build();
 
             var GrouppedStep1 = new WizardStepGroupBuilder()
-                .SetName("Group1").SetDescription("description for subgroup 1")
+                .SetName("Group1")
+                .SetDescription("description for subgroup 1")
                 .AddChildren(SubStep1)
                 .AddChildren(SubStep2)
                 .AddChildren(GrouppedStep1_3)
                 .Build();
                                 
             var Step2 = new ExecutableWizardStepBuilder()
-                .SetName("Step2").SetIconName("Settings")
+                .SetName("Step2")
+                .SetIconName("Settings")
                 .SetDescription("description for step 2").
-                SetReadOnly(false).SetSelectable(true).Build();
+                SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
 
             var SubStep3_1 = new ExecutableWizardStepBuilder()
-                .SetName("SubStep3.1").SetDescription("description for substep 3.1")
-                .SetReadOnly(false).SetSelectable(true).Build();
+                .SetName("SubStep3.1")
+                .SetDescription("description for substep 3.1")
+                .SetReadOnly(false)
+                .SetSelectable(true)
+                .Build();
 
             var GrouppedStep3 = new WizardStepGroupBuilder()
-                .SetName("Group3").SetDescription("description for group 3")
+                .SetName("Group3")
+                .SetDescription("description for group 3")
                 .AddChildren(SubStep3_1)
+                .Build();
+            var Step4 = new ExecutableWizardStepBuilder()
+                .SetName("Step4")
+                .SetIconName("Settings")
+                .SetDescription("description for step 2").
+                SetReadOnly(false)
+                .SetSelectable(true)
+                .Last(true)
                 .Build();
 
             var ContextMediator = new ContextMediator();
@@ -88,8 +118,13 @@ namespace ExaminationProgram
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
 
-            var SetupWizard = new SetupWizardBuilder().AddStep(GrouppedStep1)
-                 .AddStep(Step2).AddStep(GrouppedStep3).ConfigureWizard().Build();
+            var SetupWizard = new SetupWizardBuilder()
+                .AddStep(GrouppedStep1)
+                .AddStep(Step2)
+                .AddStep(GrouppedStep3)
+                .AddStep(Step4)
+                .ConfigureWizard()
+                .Build();
 
             InstrumentalView.DataContext = InstrumentalViewModel;
             SettingsView.DataContext = SettingsViewModel;

@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace ExaminationProgram.Wizard
 {
-    public class ExecutableWizardStep : BaseWizardStep, IExecutable<BaseWizardStep, ContextMediator, object>
+    public class ExecutableWizardStep : BaseWizardStep, IExecutable<BaseWizardStep, ContextMediator, object>, ILast
     {
-        public Action<BaseWizardStep, ContextMediator, object> ExecuteStep { get; set; }        
+        private bool isLast;
+
+        public Action<BaseWizardStep, ContextMediator, object> ExecuteStep { get; set; }
+
+        public bool IsLast
+        {
+            get => isLast;
+            set => SetValue(ref isLast, value);
+        }
     }
 }
