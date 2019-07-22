@@ -11,18 +11,9 @@ namespace ExaminationProgram.Wizard
         private BaseWizardStep selectedStep;
         private ICommand nextStepCommand;
         private ICommand previousStepCommand;
-        private string executedCounts;
-        private int i = 0;
 
-        public string ExecutedCounts
-        {
-            get => executedCounts;
-            set
-            {
-                executedCounts = $"{i}/3";
-                SetValue(ref executedCounts, value);
-            }
-        }
+        public static string ExecutedCounts = "1/3";
+       
 
         public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }       
         

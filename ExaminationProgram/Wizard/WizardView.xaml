@@ -33,7 +33,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="{DynamicResource AccentColorBrush}"
-                            Kind="{Binding IconName}" />
+                            Kind="Cogs" />
                         <TextBlock
                             x:Name="stName"
                             FontSize="15"
@@ -47,55 +47,52 @@
                             Foreground="Green"
                             Kind="Exclamation"
                             Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
-                        <ic:PackIconMaterial
+                        <ic:PackIconMaterialLight
                             Width="10"
                             Height="10"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="Red"
-                            Kind="AlertCircleOutline" />
+                            Kind="Alert" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="WizardStepGroup">
             <Expander
-                IsExpanded="True"
                 Margin="5,0,5,0"
                 Background="Transparent"
-                BorderThickness="0,0,0,0.5">
+                BorderThickness="0,0,0,0.5"
+                IsExpanded="True">
                 <Expander.Header>
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <ic:PackIconMaterial
-                                Width="21"
-                                Height="21"
-                                Margin="0,0,5,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="{DynamicResource AccentColorBrush}"
-                                Kind="{Binding IconName}"
-                                Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
-                            <TextBlock Text="{Binding Name}" />
-                            <ic:PackIconMaterial
-                                Width="10"
-                                Height="10"
-                                Margin="20,0,0,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="Green"
-                                Kind="Exclamation" />
-                            <ic:PackIconMaterial
-                                Width="10"
-                                Height="10"
-                                Margin="10,0,0,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="Red"
-                                Kind="AlertCircleOutline" />
-                        </StackPanel>
-                        <TextBlock Text="{Binding ExecutedCounts}" />
+                    <StackPanel Orientation="Horizontal">
+                        <ic:PackIconMaterialLight
+                            Width="21"
+                            Height="21"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource AccentColorBrush}"
+                            Kind="FolderPlus"
+                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                        <TextBlock Text="{Binding Name}" />
+                        <ic:PackIconMaterial
+                            Width="10"
+                            Height="10"
+                            Margin="20,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Green"
+                            Kind="Exclamation" />
+                        <ic:PackIconMaterialLight
+                            Width="10"
+                            Height="10"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Red"
+                            Kind="Alert" />
                     </StackPanel>
                 </Expander.Header>
                 <DockPanel>
@@ -134,13 +131,8 @@
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="0.3*" />
-        </Grid.RowDefinitions>
         <ListBox
             x:Name="MainList"
-            Grid.RowSpan="2"
             Margin="5"
             HorizontalContentAlignment="Center"
             ItemsSource="{Binding WizardSteps}"
@@ -167,79 +159,155 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="130"
-            Height="30"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="{DynamicResource AccentColorBrush}"
-            BorderBrush="Black"
-            BorderThickness="1.25"
-            Command="{Binding PreviousStepCommand}"
-            Content="Предыдущий шаг"
-            FontSize="11" />
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="130"
-            Height="30"
-            Margin="5,0,10,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Background="{DynamicResource AccentColorBrush}"
-            BorderBrush="Black"
-            BorderThickness="1.25"
-            Command="{Binding NextStepCommand}"
-            Content="Cледующий шаг"
-            FontSize="11" />
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="130"
-            Height="30"
-            Margin="40,0,10,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Background="{DynamicResource AccentColorBrush}"
-            BorderBrush="Black"
-            BorderThickness="1.25"
-            Content="Сбросить шаги"
-            FontSize="11" />
         <Grid Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border
+                Margin="5"
+                Background="{DynamicResource ModuleLayout}"
+                BorderBrush="Black"
+                BorderThickness="0.8">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="5"
+                        Direction="210"
+                        Opacity="0.2"
+                        ShadowDepth="4"
+                        Color="Black" />
+                </Border.Effect>
+            </Border>
+            <Border Margin="5">
+                <Grid Margin="5">
+                    <TextBlock
+                        x:Name="StepName"
+                        MinWidth="50"
+                        MinHeight="25"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="16"
+                        Text="{Binding SelectedStep.Name}" />
+                    <TextBlock
+                        x:Name="StepDesctiption"
+                        MinWidth="150"
+                        MinHeight="30"
+                        Margin="10,40,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="14"
+                        Text="{Binding SelectedStep.Description}"
+                        TextWrapping="Wrap" />
+                    
+                </Grid>
+            </Border>
+            <DockPanel Grid.Column="1" Margin="5">
+                <Border
+                    Grid.Column="1"
+                    Margin="5"
+                    Background="{DynamicResource ModuleLayout}"
+                    BorderBrush="Black"
+                    BorderThickness="0.8"
+                    DockPanel.Dock="Top">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="275"
+                            Opacity="0.15"
+                            ShadowDepth="4"
+                            Color="Black" />
+                    </Border.Effect>
+                    <Grid Margin="5">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            FontSize="16"
+                            Text="Bounded Steps" />
+                    </Grid>
+                </Border>
+                <StackPanel
+                    Height="50"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
 
-            <TextBlock
-                x:Name="StepName"
-                MinWidth="50"
-                MinHeight="25"
-                Margin="0,10,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                FontSize="16"
-                Text="{Binding SelectedStep.Name}" />
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="5"
+                        Background="{DynamicResource AccentColorBrush}"
+                        BorderBrush="Black"
+                        Command="{Binding PreviousStepCommand}">
+                        <Button.Effect>
+                            <DropShadowEffect
+                                BlurRadius="2.5"
+                                Direction="300"
+                                Opacity="0.5"
+                                ShadowDepth="3"
+                                Color="#926eae" />
+                        </Button.Effect>
+                        <Button.Content>
+                            <ic:PackIconMaterial
+                                Width="26"
+                                Height="26"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Kind="ChevronDoubleLeft" />
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="5"
+                        Background="{DynamicResource AccentColorBrush}"
+                        BorderBrush="Black">
+                        <Button.Effect>
+                            <DropShadowEffect
+                                BlurRadius="2.5"
+                                Direction="300"
+                                Opacity="0.5"
+                                ShadowDepth="3"
+                                Color="#926eae" />
+                        </Button.Effect>
+                        <Button.Content>
+                            <ic:PackIconMaterial
+                                Width="26"
+                                Height="26"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Kind="Restart" />
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="5"
+                        Background="{DynamicResource AccentColorBrush}"
+                        BorderBrush="Black"
+                        Command="{Binding NextStepCommand}">
+                        <Button.Effect>
+                            <DropShadowEffect
+                                BlurRadius="2.5"
+                                Direction="300"
+                                Opacity="0.5"
+                                ShadowDepth="3"
+                                Color="#926eae" />
+                        </Button.Effect>
+                        <Button.Content>
+                            <ic:PackIconMaterial
+                                Width="26"
+                                Height="26"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Kind="ChevronDoubleRight" />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
 
-            <TextBlock
-                x:Name="StepDesctiption"
-                MinWidth="150"
-                MinHeight="30"
-                Margin="10,0,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                FontSize="14"
-                Text="{Binding SelectedStep.Description}"
-                TextWrapping="Wrap" />
-
-            <TextBlock
-                x:Name="StepError"
-                MinWidth="150"
-                MinHeight="25"
-                Margin="10,0,0,10"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                FontSize="14"
-                Text="{Binding SelectedStep.IsError}" />
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>

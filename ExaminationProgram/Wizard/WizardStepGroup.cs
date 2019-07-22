@@ -8,19 +8,7 @@ namespace ExaminationProgram.Wizard
     {
         private IList<BaseWizardStep> children;
         private bool hasChildren;
-        private int stepsCount;
-        private string executedCounts;
-        private int i = 0;
-
-        public string ExecutedCounts
-        {
-            get => executedCounts;
-            set
-            {
-                executedCounts = $" {i}/3";
-                SetValue(ref executedCounts, value);
-            }
-        }
+        private int stepsCount;       
 
         public int StepsCount
         {

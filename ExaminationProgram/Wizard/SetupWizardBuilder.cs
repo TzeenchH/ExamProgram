@@ -33,9 +33,9 @@ namespace ExaminationProgram.Wizard
                 Configure(setupWizard.WizardSteps, setupWizard.WizardSteps[1]);
             return this;
         }
+           public BaseWizardStep pstep = null;
         public void Configure(IList<BaseWizardStep> bases, BaseWizardStep nstep)
         {
-            BaseWizardStep pstep = null;
             for (int i = 0; i < bases.Count; i++)
             {                
                 if (bases[i] is WizardStepGroup group)
@@ -43,13 +43,13 @@ namespace ExaminationProgram.Wizard
                     var nextStep = i == bases.Count - 1 ? nstep : bases[i + 1] ;
                     group.StepsCount = group.Children.Count;
                     group.HasChildren = true;                  
+                    bases[i].PrevStep = pstep;
                     bases[i].NextStep = group.Children[0];
                     group.Children[0].PrevStep = bases[i];
-                    bases[i].PrevStep = pstep;
                     if (i > 0)
                     {
                         bases[i].PrevStep = bases[i-1];
-                    }                                     
+                    }
                     for (int j = 0; j < group.Children.Count; j++)
                     {
                         group.Children[j].Parent = group;
@@ -69,18 +69,22 @@ namespace ExaminationProgram.Wizard
                     }
                     if (i > 0 && i < bases.Count-1 && bases.Count != 1)
                     {
-                        step.PrevStep = bases[i-1];
                         step.NextStep = bases[i+1];
+                        if (bases[i - 1] is WizardStepGroup)
+                            step.PrevStep = pstep;
+                        else
+                        step.PrevStep = bases[i-1];
                     }
                     else if (i == 0 && i < bases.Count && bases.Count != 1)
                     {
-                        step.NextStep = bases[i + 1];
-                            if (step.Parent == null)
-                            step.PrevStep = pstep;
+                        step.NextStep = bases[i + 1];                      
                     }
                     else if (i > 0 && i == bases.Count - 1)
                     {
-                        step.PrevStep = bases[i-1];
+                        if (bases[i - 1] is WizardStepGroup)
+                            step.PrevStep = pstep;
+                        else
+                            step.PrevStep = bases[i - 1];
                         pstep = step;
                         if (step.IsLast)
                             step.NextStep = null;
