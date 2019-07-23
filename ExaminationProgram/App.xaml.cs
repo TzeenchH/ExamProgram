@@ -73,9 +73,11 @@ namespace ExaminationProgram
             var Step2 = new ExecutableWizardStepBuilder()
                 .SetName("Step2")
                 .SetIconName("Settings")
-                .SetDescription("description for step 2").
-                SetReadOnly(false)
+                .SetDescription("description for step 2")
+                .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddBoundedStep(SubSubStep1) 
+                .AddBoundedStep(GrouppedStep1)
                 .Build();
 
             var SubStep3_1 = new ExecutableWizardStepBuilder()

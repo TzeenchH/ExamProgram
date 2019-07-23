@@ -12,7 +12,7 @@ namespace ExaminationProgram.Wizard
         
         public ExecutableWizardStepBuilder()
         {
-            executedWizardStep = new ExecutableWizardStep();
+            executedWizardStep = new ExecutableWizardStep() { BoundedSteps = new List<BaseWizardStep>() };
         }
 
         public ExecutableWizardStepBuilder SetNextStep(BaseWizardStep nextStep)

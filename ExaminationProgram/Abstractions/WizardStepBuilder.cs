@@ -43,6 +43,11 @@ namespace ExaminationProgram.Abstractions
             return (TBuilder)this;
         }
 
+        public TBuilder AddBoundedStep(BaseWizardStep bounded)
+        {
+            executedWizardStep.BoundedSteps.Add(bounded);
+            return (TBuilder)this;
+        }
 
     }
 }

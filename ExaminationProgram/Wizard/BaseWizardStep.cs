@@ -1,13 +1,14 @@
 ﻿using ExaminationProgram.Interfaces;
 using ExaminationProgram.Helpers;
-using System;
+using System.Collections.Generic;
 
 namespace ExaminationProgram.Wizard
 {
     public abstract class BaseWizardStep : ObservableBase,
                     IHasIconName, IHasName, IHasDescription,
                     IReadOnly, ISelectable, IHasError, ICompleted,
-                    ILinkedInstance<BaseWizardStep>, IHasParent
+                    ILinkedInstance<BaseWizardStep>, IHasParent,
+                    IHasBoundedSteps
     {
         private string iconName;
         private string name;
@@ -19,7 +20,13 @@ namespace ExaminationProgram.Wizard
         private BaseWizardStep prevStep;
         private BaseWizardStep nextStep;
         private object parent;
+        private IList<BaseWizardStep> boundedSteps;
 
+        public IList<BaseWizardStep> BoundedSteps
+        {
+            get => boundedSteps;
+            set => SetValue(ref boundedSteps, value);
+        }
         public string IconName
         {
             get => iconName;

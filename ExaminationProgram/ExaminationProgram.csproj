@@ -78,6 +78,7 @@
     <Compile Include="Instruments\SignalAnalyzer.cs" />
     <Compile Include="Instruments\SignalGenerator.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
+    <Compile Include="Interfaces\IHasBoundedSteps.cs" />
     <Compile Include="Interfaces\IHasChildren.cs" />
     <Compile Include="Interfaces\IHasParent.cs" />
     <Compile Include="Interfaces\ILinkedInstance.cs" />

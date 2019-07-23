@@ -11,7 +11,7 @@ namespace ExaminationProgram.Wizard
     {
         public WizardStepGroupBuilder()
         {
-            executedWizardStep = new WizardStepGroup() { Children = new List<BaseWizardStep>() };
+            executedWizardStep = new WizardStepGroup() { Children = new List<BaseWizardStep>(), BoundedSteps = new List<BaseWizardStep>() };
         }
         public WizardStepGroupBuilder AddChildren (BaseWizardStep childWizardStep)
         {
