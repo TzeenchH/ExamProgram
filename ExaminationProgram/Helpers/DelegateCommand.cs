@@ -14,7 +14,6 @@ namespace ExaminationProgram.Helpers
         {
             if (execute == null)
                 throw new ArgumentNullException(nameof(execute));
-
             _execute = execute;
             _canExecute = canExecute ?? (p => true);
         }

@@ -18,5 +18,6 @@ namespace ExaminationProgram.Wizard
             get => isLast;
             set => SetValue(ref isLast, value);
         }
+        
     }
 }

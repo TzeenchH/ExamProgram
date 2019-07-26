@@ -6,7 +6,7 @@ namespace ExaminationProgram.Wizard
 {
     public abstract class BaseWizardStep : ObservableBase,
                     IHasIconName, IHasName, IHasDescription,
-                    IReadOnly, ISelectable, IHasError, ICompleted,
+                    IReadOnly, ISelectable, ICanHasError, ICompleted,
                     ILinkedInstance<BaseWizardStep>, IHasParent,
                     IHasBoundedSteps
     {
@@ -52,7 +52,7 @@ namespace ExaminationProgram.Wizard
             get => isSelected;
             set => SetValue(ref isSelected, value);
         }
-        public string IsError
+        public string IHasError
         {
             get => isError;
             set => SetValue(ref isError, value);

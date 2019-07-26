@@ -73,6 +73,7 @@
     <Compile Include="ContextMediator.cs" />
     <Compile Include="Helpers\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompletedToForegroundConverter.cs" />
+    <Compile Include="Helpers\Converters\StatusToIconConverter.cs" />
     <Compile Include="Helpers\Extentions\EnumerableExtentions.cs" />
     <Compile Include="Helpers\IconBehaviour.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Interfaces\IContextMediator.cs" />
     <Compile Include="Interfaces\IFiltering.cs" />
     <Compile Include="Interfaces\IHasDescription.cs" />
-    <Compile Include="Interfaces\IHasError.cs" />
+    <Compile Include="Interfaces\ICanHasError.cs" />
     <Compile Include="Interfaces\IHasIconName.cs" />
     <Compile Include="Interfaces\IHasName.cs" />
     <Compile Include="Interfaces\ICompleted.cs" />

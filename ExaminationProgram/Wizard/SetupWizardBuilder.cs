@@ -17,7 +17,8 @@ namespace ExaminationProgram.Wizard
             setupWizard = new SetupWizard() { WizardSteps = new ObservableCollection<BaseWizardStep>() };
            
         }
-
+       
+        
 
         public SetupWizardBuilder AddStep(BaseWizardStep baseWizardStep)
         {

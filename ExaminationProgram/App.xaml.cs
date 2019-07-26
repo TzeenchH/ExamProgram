@@ -24,6 +24,7 @@ namespace ExaminationProgram
             var LogsView = new LogsView();
             var CalibrationView = new CalibrationView();
             var WizardView = new WizardView();
+            var ContextMediator = new ContextMediator();
 
 
             var SubStep1 = new ExecutableWizardStepBuilder()
@@ -31,6 +32,22 @@ namespace ExaminationProgram
                 .SetDescription("description for substep 1.1")
                 .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Build();
             
             var SubStep2 = new ExecutableWizardStepBuilder()
@@ -38,6 +55,22 @@ namespace ExaminationProgram
                 .SetDescription("description for substep 1.2")
                 .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Build();
 
             var SubSubStep1 = new ExecutableWizardStepBuilder()
@@ -45,6 +78,22 @@ namespace ExaminationProgram
                 .SetDescription("description for subsubstep 1.3.1")
                 .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Build();
 
             var SubSubStep2 = new ExecutableWizardStepBuilder()
@@ -52,8 +101,23 @@ namespace ExaminationProgram
                 .SetDescription("description for subsubstep 1.3.2")
                 .SetReadOnly(false)
                 .SetSelectable(true)
-                .Build();
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
 
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
+                .Build();
 
             var GrouppedStep1_3 = new WizardStepGroupBuilder()
                 .SetName("SubGruop1.3")
@@ -78,6 +142,22 @@ namespace ExaminationProgram
                 .SetSelectable(true)
                 .AddBoundedStep(SubSubStep1) 
                 .AddBoundedStep(GrouppedStep1)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Build();
 
             var SubStep3_1 = new ExecutableWizardStepBuilder()
@@ -85,6 +165,22 @@ namespace ExaminationProgram
                 .SetDescription("description for substep 3.1")
                 .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Build();
 
             var GrouppedStep3 = new WizardStepGroupBuilder()
@@ -95,13 +191,28 @@ namespace ExaminationProgram
             var Step4 = new ExecutableWizardStepBuilder()
                 .SetName("Step4")
                 .SetIconName("Settings")
-                .SetDescription("description for step 2").
-                SetReadOnly(false)
+                .SetDescription("description for step 2")
+                .SetReadOnly(false)
                 .SetSelectable(true)
+                .AddAction((s, c, o) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (System.Exception)
+                    {
+
+                        throw;
+                    }
+                    finally
+                    {
+
+                    }
+                })
                 .Last(true)
                 .Build();
 
-            var ContextMediator = new ContextMediator();
             
             var SettingsGroupsContainer = new SettingsGroupsContainer(
                 new SettingsGroup("Group 1",

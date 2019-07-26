@@ -3,6 +3,8 @@ using System.Windows.Input;
 using ExaminationProgram.Helpers;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System;
+using ExaminationProgram.Interfaces;
 
 namespace ExaminationProgram.Wizard
 {
@@ -13,10 +15,11 @@ namespace ExaminationProgram.Wizard
         private ICommand previousStepCommand;
 
         public static string ExecutedCounts = "1/3";
-       
+        private ICommand executeCommand;
+        ContextMediator contextMediator;
 
-        public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }       
-        
+        public ObservableCollection<BaseWizardStep> WizardSteps { get; set; }
+
         public ICommand NextStepCommand
         {
             get => nextStepCommand;
@@ -27,20 +30,41 @@ namespace ExaminationProgram.Wizard
             get => previousStepCommand;
             set => SetValue(ref previousStepCommand, value);
         }
+        public ICommand ExecuteCommand
+        {
+            get => executeCommand;
+            set => SetValue(ref executeCommand, value);
+        }
         public SetupWizard()
         {
-            
+
             NextStepCommand = new DelegateCommand(() =>
             {
-                SelectedStep.IsCompleted = true;
+                
                 SelectedStep = SelectedStep.NextStep;
             }, () => SelectedStep.NextStep != null);
             PreviousStepCommand = new DelegateCommand(() =>
             {
-                SelectedStep.IsCompleted = false;
+                
                 SelectedStep = SelectedStep.PrevStep;
             }, () => SelectedStep.PrevStep != null);
+
+            ExecuteCommand = new DelegateCommand(()=>
+            {
+                try
+                {
+                    (SelectedStep as IExecutable<BaseWizardStep, ContextMediator, object>).ExecuteStep.Invoke(SelectedStep, contextMediator , null);
+                    SelectedStep.IsCompleted = true;
+                }
+                catch (Exception)
+                {
+                    SelectedStep.IHasError = "sdddfde";
+                    throw;
+                }
+
+            },()=> SelectedStep is ExecutableWizardStep);
         }
+        
 
         public BaseWizardStep SelectedStep
         {

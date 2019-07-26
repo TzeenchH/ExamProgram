@@ -17,13 +17,17 @@
     <UserControl.Resources>
         <conv:BooleanToVisibilityConverter
             x:Key="btvc"
-            False="Visible"
-            True="Collapsed" />
+            False="Collapsed"
+            True="Visible" />
+        <conv:StatusToIconConverter
+            x:Key="stic"
+            Error="Alert"
+            Success="CheckboxBlankCircleOutline" />
         <ControlTemplate x:Key="AlternativeExecuted">
             <StackPanel
-                Background="{DynamicResource ModuleLayout}"
                 x:Name="InnerSteps"
                 Margin="5"
+                Background="{DynamicResource ModuleLayout}"
                 Orientation="Horizontal">
                 <Border BorderThickness="0,0,0,0.5">
                     <StackPanel Orientation="Horizontal">
@@ -45,9 +49,13 @@
                             Margin="10,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="Green"
-                            Kind="CheckboxBlankCircleOutline"
-                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                            Foreground="Green">
+                            <!--  Kind="CheckboxBlankCircleOutline"  -->
+                            <!--  Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}"  -->
+                            <ic:PackIconMaterial.Kind>
+                                <Multibinding />
+                            </ic:PackIconMaterial.Kind>
+                        </ic:PackIconMaterial>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -131,7 +139,6 @@
                             VerticalAlignment="Center"
                             Foreground="Green"
                             Kind="CheckboxMarkedCircleOutline"
-                            
                             Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
                         <ic:PackIconMaterialLight
                             Width="16"
@@ -181,8 +188,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource AccentColorBrush}"
-                        Kind="FolderPlus"
-                        Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
+                        Kind="FolderPlus" />
                     <TextBlock Text="{Binding Name}" />
                     <ic:PackIconMaterial
                         Width="16"
@@ -191,7 +197,8 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Foreground="Green"
-                        Kind="Exclamation" />
+                        Kind="CheckboxBlankCircleOutline"
+                        Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
                     <ic:PackIconMaterialLight
                         Width="16"
                         Height="16"
@@ -339,9 +346,7 @@
                         FontSize="14"
                         Text="{Binding SelectedStep.Description}"
                         TextWrapping="Wrap" />
-                    <ListBox
-                        Background="{DynamicResource ModuleLayout}"
-                        ItemsSource="{Binding SelectedStep.Children}">
+                    <ListBox Background="{DynamicResource ModuleLayout}" ItemsSource="{Binding SelectedStep.Children}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Template">
@@ -395,9 +400,9 @@
                         </Border>
                         <ListBox
                             x:Name="BoundedList"
-                            Background="{DynamicResource ModuleLayout}"
                             Margin="5"
                             HorizontalAlignment="Center"
+                            Background="{DynamicResource ModuleLayout}"
                             ItemsSource="{Binding SelectedStep.BoundedSteps}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">

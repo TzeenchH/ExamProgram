@@ -31,6 +31,12 @@ namespace ExaminationProgram.Wizard
             return this;
         }
 
+        public ExecutableWizardStepBuilder AddAction (Action<BaseWizardStep, ContextMediator, object> action)
+        {
+            executedWizardStep.ExecuteStep = action;
+            return this;        
+        }
+
         public ExecutableWizardStep Build()
         {
             return executedWizardStep;
