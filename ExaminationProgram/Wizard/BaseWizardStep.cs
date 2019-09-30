@@ -52,7 +52,7 @@ namespace ExaminationProgram.Wizard
             get => isSelected;
             set => SetValue(ref isSelected, value);
         }
-        public string IHasError
+        public string HasError
         {
             get => isError;
             set => SetValue(ref isError, value);

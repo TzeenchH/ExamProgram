@@ -16,7 +16,7 @@ namespace ExaminationProgram.Helpers.Converters
 
             string err = values[0] as string;
             bool compl = (bool)values[1];
-            if (string.IsNullOrEmpty(err) && compl)
+            if (string.IsNullOrEmpty(err) && compl || !string.IsNullOrEmpty(err) && compl)
                 return Success;
             else if (!string.IsNullOrEmpty(err))
                 return Error;

@@ -5,6 +5,7 @@
     xmlns:beh="clr-namespace:ExaminationProgram.Helpers"
     xmlns:conv="clr-namespace:ExaminationProgram.Helpers.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ex="clr-namespace:ExaminationProgram.Helpers.Extentions"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:ic="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:ExaminationProgram.Wizard"
@@ -22,7 +23,7 @@
         <conv:StatusToIconConverter
             x:Key="stic"
             Error="Alert"
-            Success="CheckboxBlankCircleOutline" />
+            Success="CheckboxMarkedCircleOutline" />
         <ControlTemplate x:Key="AlternativeExecuted">
             <StackPanel
                 x:Name="InnerSteps"
@@ -50,10 +51,11 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="Green">
-                            <!--  Kind="CheckboxBlankCircleOutline"  -->
-                            <!--  Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}"  -->
                             <ic:PackIconMaterial.Kind>
-                                <Multibinding />
+                                <MultiBinding Converter="{StaticResource stic}">
+                                    <Binding Path="HasError" />
+                                    <Binding Path="IsCompleted" />
+                                </MultiBinding>
                             </ic:PackIconMaterial.Kind>
                         </ic:PackIconMaterial>
                     </StackPanel>
@@ -79,8 +81,14 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="Green"
-                        Kind="CheckboxBlankCircleOutline" />
+                        Foreground="Green">
+                        <ic:PackIconMaterial.Kind>
+                            <MultiBinding Converter="{StaticResource stic}">
+                                <Binding Path="HasError" />
+                                <Binding Path="IsCompleted" />
+                            </MultiBinding>
+                        </ic:PackIconMaterial.Kind>
+                    </ic:PackIconMaterial>
                 </StackPanel>
                 <DockPanel>
                     <ListBox
@@ -134,20 +142,17 @@
                         <ic:PackIconMaterial
                             Width="16"
                             Height="16"
-                            Margin="10,0,0,0"
+                            Margin="20,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="Green"
-                            Kind="CheckboxMarkedCircleOutline"
-                            Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
-                        <ic:PackIconMaterialLight
-                            Width="16"
-                            Height="16"
-                            Margin="10,0,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="Red"
-                            Kind="Alert" />
+                            Foreground="Green">
+                            <ic:PackIconMaterial.Kind>
+                                <MultiBinding Converter="{StaticResource stic}">
+                                    <Binding Path="HasError" />
+                                    <Binding Path="IsCompleted" />
+                                </MultiBinding>
+                            </ic:PackIconMaterial.Kind>
+                        </ic:PackIconMaterial>
                         <ic:PackIconMaterial
                             Width="16"
                             Height="16"
@@ -196,17 +201,14 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="Green"
-                        Kind="CheckboxBlankCircleOutline"
-                        Visibility="{Binding IsCompleted, Converter={StaticResource btvc}}" />
-                    <ic:PackIconMaterialLight
-                        Width="16"
-                        Height="16"
-                        Margin="10,0,0,0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Foreground="Red"
-                        Kind="Alert" />
+                        Foreground="Green">
+                        <ic:PackIconMaterial.Kind>
+                            <MultiBinding Converter="{StaticResource stic}">
+                                <Binding Path="HasError" />
+                                <Binding Path="IsCompleted" />
+                            </MultiBinding>
+                        </ic:PackIconMaterial.Kind>
+                    </ic:PackIconMaterial>
                     <ic:PackIconMaterial
                         Width="16"
                         Height="16"
@@ -427,6 +429,10 @@
                         </ListBox>
                     </StackPanel>
                 </Border>
+                <TextBlock
+                    MinWidth="100"
+                    MaxHeight="150"
+                    Text="{Binding SelectedStep.HasError}" />
                 <StackPanel
                     Width="195"
                     Height="50"
@@ -438,7 +444,8 @@
                         Height="40"
                         Margin="5"
                         Background="{DynamicResource AccentColorBrush}"
-                        BorderBrush="Black">
+                        BorderBrush="Black"
+                        Command="{Binding ExecuteCommand}">
                         <Button.Effect>
                             <DropShadowEffect
                                 BlurRadius="2.5"

@@ -3,6 +3,9 @@ using ExaminationProgram.Wizard;
 using System.Collections.ObjectModel;
 using ExaminationProgram.Abstractions;
 using ExaminationProgram.Helpers;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace ExaminationProgram.Modules.CalibrationModule
 {
@@ -13,6 +16,7 @@ namespace ExaminationProgram.Modules.CalibrationModule
         private ICommand clearSavedCalibrationsCommand;
         private SetupWizard _setupWizard;
 
+        public IList<string> SavedConfigurations { get; set; }
         private SetupWizard SetupWizard
         {
             get => _setupWizard;
@@ -38,6 +42,9 @@ namespace ExaminationProgram.Modules.CalibrationModule
         }
         public CalibrationViewModel(string title, string iconName, ContextMediator contextMediator, WizardView wizardView, SetupWizard setupWizard) : base(title, iconName, contextMediator)
         {
+            
+            SavedConfigurations = new List<string>();
+            SavedConfigurations = (from a in Directory.GetFiles($".\\WizardLog") select Path.GetFileNameWithoutExtension(a)).ToList<string>();
             WizardView = wizardView;
             SetupWizard = setupWizard;
             WizardView.DataContext = SetupWizard;

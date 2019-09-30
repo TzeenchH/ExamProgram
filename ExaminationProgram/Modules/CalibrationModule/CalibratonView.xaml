@@ -25,14 +25,15 @@
                             Margin="10" 
                             BorderThickness="1.5"
                             VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            MinHeight="100"
-                            MinWidth="150">
+                            HorizontalAlignment="Left"                            
+                            ItemsSource="{Binding SavedConfigurations}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Template">
                                         <Setter.Value>
-                                            <ControlTemplate />
+                                            <ControlTemplate>
+                                                <TextBlock Text="{Binding}"/>
+                                            </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
