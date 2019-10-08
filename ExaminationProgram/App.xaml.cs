@@ -213,7 +213,7 @@ namespace ExaminationProgram
                 .Last(true)
                 .Build();
 
-            
+            var TestData = new TestData();
             var SettingsGroupsContainer = new SettingsGroupsContainer(
                 new SettingsGroup("Group 1",
                     new DoubleSetting() { Name = "Setting1.1", Dimention = "Hz", Visible=true },
@@ -227,7 +227,7 @@ namespace ExaminationProgram
 
             var InstrumentalViewModel = new InstrumentalViewModel("Модуль приборов", "appbar_power", ContextMediator ,new SignalAnalyzer(), new SignalGenerator()); 
             var SettingsViewModel = new SettingsViewModel("Модуль настроек", "appbar_settings", ContextMediator ) {Groups = SettingsGroupsContainer.SettingsGroups };            
-            var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator) {SettingsList = SettingsGroupsContainer.SettingsGroups };
+            var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator, TestData) {SettingsList = SettingsGroupsContainer.SettingsGroups };
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator );
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator );
 
