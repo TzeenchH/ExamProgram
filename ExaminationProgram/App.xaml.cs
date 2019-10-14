@@ -264,7 +264,7 @@ namespace ExaminationProgram
                 .AddView(MeasurementsView)
                 .AddView(DataBaseView)
                 .AddView(LogsView);
-
+            
             var mainWindow = new MainWindow();
             mainWindow.DataContext = shell;
 

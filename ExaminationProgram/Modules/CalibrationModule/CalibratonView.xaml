@@ -12,14 +12,12 @@
     Background="{DynamicResource ModuleLayout}"
     mc:Ignorable="d">
     <Grid>
-        <TabControl>
-            <TabItem>
-                <TabItem.Header>
-                    <Border BorderBrush="Black" BorderThickness="0.5">
-                        <TextBlock Text="Сохранённые калибровки" />
-                    </Border>
-                </TabItem.Header>
-                <TabItem.Content>
+        <mah:MetroAnimatedTabControl>
+            <mah:MetroTabItem>
+                <mah:MetroTabItem.Header>
+                    <TextBlock Text="Сохранённые калибровки"/>
+                </mah:MetroTabItem.Header>
+                <mah:MetroContentControl>
                     <Grid>
                         <ListBox 
                             Margin="10" 
@@ -52,18 +50,24 @@
                             Content="удалить все калибровки "
                             FontSize="11" />
                     </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Border BorderBrush="Black" BorderThickness="0.5">
-                        <TextBlock Text="Создать калибровку " />
-                    </Border>
-                </TabItem.Header>
-                <TabItem.Content>
+                </mah:MetroContentControl>
+            </mah:MetroTabItem>
+            <mah:MetroTabItem>
+                <mah:MetroTabItem.Header>
+                    <TextBlock Text="Создать калибровку"/>
+                </mah:MetroTabItem.Header>
+                <mah:MetroTabItem.Content>
                     <Binding Path="WizardView" />
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>
+                </mah:MetroTabItem.Content>
+            </mah:MetroTabItem>
+            <mah:MetroAnimatedTabControl.Resources>
+                <Style TargetType="mah:MetroTabItem">
+                     <Setter Property="FontFamily" Value="Century Gothic" />
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontSize"  Value="14"/>
+                </Style>
+                
+            </mah:MetroAnimatedTabControl.Resources>
+        </mah:MetroAnimatedTabControl>
     </Grid>
 </UserControl>
