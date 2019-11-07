@@ -1,37 +1,35 @@
-﻿using System.Windows;
-using ExaminationProgram.Modules.LoggingModule;
-using ExaminationProgram.Wizard;
+﻿using ExaminationProgram.Abstractions;
 using ExaminationProgram.Instruments;
-using ExaminationProgram.Modules.LogsModule;
 using ExaminationProgram.Modules.DataBaseModule;
-using ExaminationProgram.Modules.SettingsModule;
-using ExaminationProgram.Modules.CalibrationModule;
 using ExaminationProgram.Modules.InstrumentalModule;
+using ExaminationProgram.Modules.LogsModule;
 using ExaminationProgram.Modules.MeasurementsModule;
+using ExaminationProgram.Modules.SettingsModule;
 using ExaminationProgram.Modules.SettingsModule.Settings;
+using ExaminationProgram.Wizard;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using Autofac;
+using System.Threading.Tasks;
 
 namespace ExaminationProgram
 {
-    public partial class App : Application
-    {
-        protected override void OnStartup(StartupEventArgs e)
+    public class Bootstrap : IBootstrap
+    {       
+        public Bootstrap()
         {
-            //var LogWindow = new LogginWindowView();
-            //var LogWindowViewModel = new LoggingWindowViewModel();
             var shell = new Shell("АИК");
-            var InstrumentalView = new InstrumentalView();
-            var SettingsView = new SettingsView();
-            var MeasurementsView = new MeasurementsView();
-            var DataBaseView = new DataBaseView();
-            var LogsView = new LogsView();
-            var CalibrationView = new CalibrationView();
-            var WizardView = new WizardView();
+            //var InstrumentalView = new InstrumentalView();
+            //var SettingsView = new SettingsView();
+            //var MeasurementsView = new MeasurementsView();
+            //var DataBaseView = new DataBaseView();
+            //var LogsView = new LogsView();
+            //var CalibrationView = new CalibrationView();
+            //var WizardView = new WizardView();
             var ContextMediator = new ContextMediator();
-            //LogWindow.DataContext = LogWindowViewModel;
-            //LogWindow.Show();
-
-            
             var SubStep1 = new ExecutableWizardStepBuilder()
                 .SetName("SubStep1.1")
                 .SetDescription("description for substep 1.1")
@@ -244,40 +242,6 @@ namespace ExaminationProgram
                 .ConfigureWizard()
                 .Build();
 
-            InstrumentalView.DataContext = InstrumentalViewModel;
-            SettingsView.DataContext = SettingsViewModel;
-            MeasurementsView.DataContext = MeasurementsViewModel;
-            DataBaseView.DataContext = DataBaseViewModel;
-            LogsView.DataContext = LogsViewModel;
-            WizardView.DataContext = SetupWizard;
-
-            var CalibrationViewModel = new CalibrationViewModel("Модуль калибровки", "appbar_scale", ContextMediator, WizardView, SetupWizard);
-            CalibrationView.DataContext = CalibrationViewModel;
-
-            ContextMediator
-                .AddModuleReference(InstrumentalViewModel)
-                .AddModuleReference(SettingsViewModel)
-                .AddModuleReference(CalibrationViewModel)
-                .AddModuleReference(MeasurementsViewModel)
-                .AddModuleReference(DataBaseViewModel)
-                .AddModuleReference(LogsViewModel);
-
-            shell
-                .AddView(InstrumentalView)
-                .AddView(SettingsView)
-                .AddView(CalibrationView)
-                .AddView(MeasurementsView)
-                .AddView(DataBaseView)
-                .AddView(LogsView);
-            
-
-            var mainWindow = new MainWindow();
-            mainWindow.DataContext = shell;
-
-             
-                //LogWindow.Close();
-                mainWindow.Show();
-            
         }
     }
 }

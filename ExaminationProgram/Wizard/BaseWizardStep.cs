@@ -16,7 +16,7 @@ namespace ExaminationProgram.Wizard
         private bool isReadOnly;
         private bool isSelected;
         private string isError;
-        private bool isCompleted;
+        public bool isCompleted;
         private BaseWizardStep prevStep;
         private BaseWizardStep nextStep;
         private object parent;

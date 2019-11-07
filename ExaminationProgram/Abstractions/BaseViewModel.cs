@@ -1,8 +1,9 @@
 ﻿using ExaminationProgram.Helpers;
+using ExaminationProgram.Interfaces;
 
 namespace ExaminationProgram.Abstractions
 {
-    public abstract class BaseViewModel : ObservableBase, IHasTitle
+    public abstract class BaseViewModel : ObservableBase, IViewModel
     {
         protected ContextMediator contextMediator;
         private string title;

@@ -115,7 +115,6 @@
             Height="20"
             Background="White"
             BorderBrush="Black"
-            
             BorderThickness="1">
             <mah:MetroProgressBar.Effect>
                 <DropShadowEffect

@@ -37,7 +37,7 @@ namespace ExaminationProgram.Helpers
         public DelegateCommand(Action execute) : base(p => execute()) { }
         public DelegateCommand(Action execute, Func<bool> canExecute) : base(p => execute(), p => canExecute()) { }
 
-        public DelegateCommand(Action<object> execute) : base(execute) { }
+        public DelegateCommand(Action<object> execute, object canLogging) : base(execute) { }
         public DelegateCommand(Action<object> execute, Func<bool> canExecute) : base(execute, canExecute) { }
     }
 }

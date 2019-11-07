@@ -4,6 +4,12 @@ using ExaminationProgram.Helpers;
 
 namespace ExaminationProgram
 {
+    public enum AccessTypes
+    {
+        Administrator,
+        User,
+        Watcher
+    }
     public class Shell : ObservableBase
     {
         private string appName;

@@ -24,6 +24,7 @@
             x:Key="stic"
             Error="Alert"
             Success="CheckboxMarkedCircleOutline" />
+        
         <ControlTemplate x:Key="AlternativeExecuted">
             <StackPanel
                 x:Name="InnerSteps"
@@ -201,7 +202,8 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="Green">
+                        Foreground="Green"
+                        >
                         <ic:PackIconMaterial.Kind>
                             <MultiBinding Converter="{StaticResource stic}">
                                 <Binding Path="HasError" />
