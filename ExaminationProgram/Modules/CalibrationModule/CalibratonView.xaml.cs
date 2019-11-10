@@ -26,7 +26,7 @@ namespace ExaminationProgram.Modules.CalibrationModule
             InitializeComponent();
         }
 
-        public IViewModel ViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IViewModel ViewModel { get; set; }
 
         public void ModuleAccesed(AccessTypes access)
         {

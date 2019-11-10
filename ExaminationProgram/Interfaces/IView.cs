@@ -7,9 +7,9 @@ using ExaminationProgram;
 
 namespace ExaminationProgram.Interfaces
 {
-    interface IView
+    public interface IView
     {
-        IViewModel ViewModel { get; set; }
+       IViewModel ViewModel { get; set; }
 
         void ModuleAccesed(AccessTypes access);
     }

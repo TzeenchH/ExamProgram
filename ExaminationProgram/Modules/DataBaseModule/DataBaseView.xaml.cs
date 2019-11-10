@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExaminationProgram.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,28 @@ namespace ExaminationProgram.Modules.DataBaseModule
     /// <summary>
     /// Логика взаимодействия для DataBaseView.xaml
     /// </summary>
-    public partial class DataBaseView : UserControl
+    public partial class DataBaseView : UserControl, IView
     {
         public DataBaseView()
         {
             
             InitializeComponent();
+        }
+        public IViewModel ViewModel { get; set; }
+        public void ModuleAccesed(AccessTypes access)
+        {
+            switch (access)
+            {
+                case AccessTypes.Administrator:
+                    this.Visibility = Visibility.Visible;
+                    break;
+                case AccessTypes.User:
+                    this.Visibility = Visibility.Visible;
+                    break;
+                case AccessTypes.Watcher:
+                    this.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }

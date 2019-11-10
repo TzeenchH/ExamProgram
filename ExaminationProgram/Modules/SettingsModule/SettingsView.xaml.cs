@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExaminationProgram.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,27 @@ namespace ExaminationProgram.Modules.SettingsModule
     /// <summary>
     /// Логика взаимодействия для SettingsView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class SettingsView : UserControl, IView
     {
         public SettingsView()
         {
             InitializeComponent();
+        }
+        public IViewModel ViewModel { get; set; }
+        public void ModuleAccesed(AccessTypes access)
+        {
+            switch (access)
+            {
+                case AccessTypes.Administrator:
+                    this.Visibility = Visibility.Visible;
+                    break;
+                case AccessTypes.User:
+                    this.Visibility = Visibility.Visible;
+                    break;
+                case AccessTypes.Watcher:
+                    this.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }
