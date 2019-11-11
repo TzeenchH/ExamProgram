@@ -97,6 +97,7 @@
     <Compile Include="Helpers\Extentions\ExtendedMultiBinding.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />
     <Compile Include="Instruments\SignalGenerator.cs" />
+    <Compile Include="Interfaces\IBootstrap.cs" />
     <Compile Include="Interfaces\IDialogControllerWithContext.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IHasBoundedSteps.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\ISetting.cs" />
     <Compile Include="Interfaces\ILast.cs" />
+    <Compile Include="Interfaces\IShell.cs" />
     <Compile Include="Interfaces\IsVisible.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
