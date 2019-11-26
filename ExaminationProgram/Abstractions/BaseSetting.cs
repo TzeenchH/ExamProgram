@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ExaminationProgram.Helpers;
 using ExaminationProgram.Interfaces;
 
 namespace ExaminationProgram.Abstractions
 {
-    public abstract class BaseSetting<T> : ObservableBase, ISetting
+    public abstract class BaseSetting<T> : ObservableBase, ISetting       
     {
         private List<T> _value;
         private string name;
@@ -35,6 +36,6 @@ namespace ExaminationProgram.Abstractions
             set => SetValue(ref dimention, value);
         }
 
-
+        
     }
 }

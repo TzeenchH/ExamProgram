@@ -17,7 +17,7 @@ namespace ExaminationProgram
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //var LogWindow = new LogginWindowView();
+            // var LogWindow = new LogginWindowView();
             //var LogWindowViewModel = new LoggingWindowViewModel();
             var shell = new Shell("АИК");
             var InstrumentalView = new InstrumentalView();
@@ -30,8 +30,11 @@ namespace ExaminationProgram
             var ContextMediator = new ContextMediator();
             //LogWindow.DataContext = LogWindowViewModel;
             //LogWindow.Show();
+            //LogWindow
 
-            
+
+
+
             var SubStep1 = new ExecutableWizardStepBuilder()
                 .SetName("SubStep1.1")
                 .SetDescription("description for substep 1.1")
@@ -269,15 +272,15 @@ namespace ExaminationProgram
                 .AddView(MeasurementsView)
                 .AddView(DataBaseView)
                 .AddView(LogsView);
-            
+
 
             var mainWindow = new MainWindow();
             mainWindow.DataContext = shell;
 
-             
-                //LogWindow.Close();
-                mainWindow.Show();
-            
+
+            //LogWindow.Close();
+            mainWindow.Show();
+
         }
     }
 }

@@ -19,9 +19,37 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.9*" />
+            <ColumnDefinition Width="0.7*" />
             <ColumnDefinition />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
+        <ListBox
+            Grid.Column="2"
+            Margin="8"
+            FontSize="18"
+            ItemsSource="{Binding AddedSettings, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border
+                                    MaxWidth="300"
+                                    HorizontalAlignment="Left"
+                                    BorderBrush="{DynamicResource AccentColorBrush}"
+                                    BorderThickness="0,0,0,1">
+                                    <TextBlock
+                                        x:Name="SettingsGroupHeader"
+                                        Margin="2,3,0,0"
+                                        Text="{Binding AddedSettings.Name}" />
+
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
         <Button
             x:Name="ClearButton"
             Margin="8"
@@ -142,7 +170,6 @@
                         Opacity="0.6"
                         ShadowDepth="5" />
                 </Border.Effect>
-
                 <Grid
                     Width="350"
                     Height="100"
@@ -195,7 +222,7 @@
                         BorderBrush="Black"
                         BorderThickness="1.25"
                         FontSize="16"
-                        Text="111" />
+                        Text="{Binding Vall}" />
                     <Button
                         Width="50"
                         Height="30"
@@ -205,9 +232,20 @@
                         Background="{DynamicResource AccentColorBrush}"
                         BorderBrush="Black"
                         BorderThickness="1.25"
+                        Command="{Binding AddValueCommand}"
                         Content="Add" />
                 </Grid>
             </Border>
         </DockPanel>
+        <Button
+            Grid.Column="1"
+            Width="140"
+            Height="40"
+            Margin="10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Panel.ZIndex="0"
+            Background="{DynamicResource AccentColorBrush}"
+            Content="Сохранить настройку" />
     </Grid>
 </UserControl>
