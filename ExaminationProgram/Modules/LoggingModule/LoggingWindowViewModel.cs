@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.IO;
 using ExaminationProgram.Helpers;
+using System.Windows;
+using System.Reflection;
 
 namespace ExaminationProgram.Modules.LoggingModule
 {
@@ -15,7 +17,7 @@ namespace ExaminationProgram.Modules.LoggingModule
         private string password;
         private ICommand autcorizateCommand;
         private bool authorized;
-
+        
         public string LoginName
         {
             get => loginName;
@@ -26,23 +28,28 @@ namespace ExaminationProgram.Modules.LoggingModule
             get => password;
             set => SetValue(ref password, value);
         }
+       
         public bool Authorized
         {
             get => authorized;
             set => SetValue(ref authorized, value);
-        }
-        public ICommand AutcorizateCommand
+        }       
+        public  ICommand AutcorizateCommand
         {
             get => autcorizateCommand;
             set => SetValue(ref autcorizateCommand, value);
         }
 
-        public LoggingWindowViewModel()
+        public LoggingWindowViewModel( Shell shell)
         {
-            AutcorizateCommand = new DelegateCommand(() =>
-            {
-
-                
+             AutcorizateCommand = new DelegateCommand(() =>
+             {               
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.DataContext = shell;
+                    mainWindow.Show();
+                    App.Current.Windows[0].Close();
+                }
             },
             () => CanLogging()); ;
         }
@@ -57,7 +64,7 @@ namespace ExaminationProgram.Modules.LoggingModule
             else return true;
 
         }
+        
 
-       
     }
 }

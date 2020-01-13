@@ -14,18 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace ExaminationProgram.Modules.LoggingModule
-{
-    /// <summary>
-    /// Логика взаимодействия для LogginWindowView.xaml
-    /// </summary>
+{    
     public partial class LogginWindowView
     {
+       
+
         public LogginWindowView()
         {
-            InitializeComponent();
             
+            InitializeComponent();            
         }
 
-       
+        //private  void  Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainWindow mainWindow = new MainWindow();
+        //    mainWindow.DataContext = shell;
+        //    mainWindow.Show();
+        //    this.Close();
+        //}
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Threading;
 
 namespace ExaminationProgram.Helpers
 {
-    public abstract class ObservableBase : INotifyPropertyChanged
+    public abstract class ObservableBase : DispatcherObject, INotifyPropertyChanged
     {
         public virtual event PropertyChangedEventHandler PropertyChanged;
 

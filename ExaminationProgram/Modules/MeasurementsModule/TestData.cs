@@ -21,7 +21,6 @@ namespace ExaminationProgram.Modules.MeasurementsModule
                 break;
                 Thread.Sleep(1000);
             }
-
         }
         private ChartValues<int> testCollection1;
         private ChartValues<int> testCollection2;

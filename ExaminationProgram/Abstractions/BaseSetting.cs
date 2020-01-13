@@ -5,7 +5,7 @@ using ExaminationProgram.Interfaces;
 
 namespace ExaminationProgram.Abstractions
 {
-    public abstract class BaseSetting<T> : ObservableBase, ISetting       
+    public abstract class BaseSetting<T> : ObservableBase, ISetting
     {
         private List<T> _value;
         private string name;
@@ -15,8 +15,8 @@ namespace ExaminationProgram.Abstractions
         public bool Visible
         {
             get => visible;
-            set => SetValue(ref visible, value);      
-        } 
+            set => SetValue(ref visible, value);
+        }
         public List<T> Value
         {
             get => _value;
@@ -36,6 +36,6 @@ namespace ExaminationProgram.Abstractions
             set => SetValue(ref dimention, value);
         }
 
-        
+        public abstract object Clone();
     }
 }

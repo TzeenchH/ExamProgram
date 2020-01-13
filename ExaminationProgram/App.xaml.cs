@@ -17,9 +17,9 @@ namespace ExaminationProgram
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            // var LogWindow = new LogginWindowView();
-            //var LogWindowViewModel = new LoggingWindowViewModel();
-            var shell = new Shell("АИК");
+            Shell shell = new Shell("АИК");
+            var LogWindow = new LogginWindowView();
+            var LogWindowViewModel = new LoggingWindowViewModel(shell);
             var InstrumentalView = new InstrumentalView();
             var SettingsView = new SettingsView();
             var MeasurementsView = new MeasurementsView();
@@ -28,8 +28,8 @@ namespace ExaminationProgram
             var CalibrationView = new CalibrationView();
             var WizardView = new WizardView();
             var ContextMediator = new ContextMediator();
-            //LogWindow.DataContext = LogWindowViewModel;
-            //LogWindow.Show();
+            LogWindow.DataContext = LogWindowViewModel;
+            LogWindow.Show();
             //LogWindow
 
 
@@ -234,7 +234,7 @@ namespace ExaminationProgram
                     new IntSetting() { Name = "Setting3.2", Dimention = "Rad", Visible = true }));
 
             var InstrumentalViewModel = new InstrumentalViewModel("Модуль приборов", "appbar_power", ContextMediator, new SignalAnalyzer(), new SignalGenerator());
-            var SettingsViewModel = new SettingsViewModel("Модуль настроек", "appbar_settings", ContextMediator) { Groups = SettingsGroupsContainer.SettingsGroups };
+            var SettingsViewModel = new SettingsViewModel("Модуль настроек", "appbar_settings", ContextMediator, SettingsGroupsContainer.SettingsGroups);
             var MeasurementsViewModel = new MeasurementsViewModel("Автоматический режим", "appbar_axis_x", ContextMediator, TestData) { SettingsList = SettingsGroupsContainer.SettingsGroups };
             var DataBaseViewModel = new DataBaseViewModel("База данных", "appbar_database", ContextMediator);
             var LogsViewModel = new LogsViewModel("Лог", "appbar_disk", ContextMediator);
@@ -247,6 +247,7 @@ namespace ExaminationProgram
                 .ConfigureWizard()
                 .Build();
 
+            LogWindow.DataContext = LogWindowViewModel;
             InstrumentalView.DataContext = InstrumentalViewModel;
             SettingsView.DataContext = SettingsViewModel;
             MeasurementsView.DataContext = MeasurementsViewModel;
@@ -274,12 +275,12 @@ namespace ExaminationProgram
                 .AddView(LogsView);
 
 
-            var mainWindow = new MainWindow();
-            mainWindow.DataContext = shell;
+            //var mainWindow = new MainWindow();
+            //mainWindow.DataContext = shell;
 
 
-            //LogWindow.Close();
-            mainWindow.Show();
+            
+           
 
         }
     }

@@ -45,17 +45,15 @@ namespace ExaminationProgram.Modules.SettingsModule
             get => addedSettings;
             set => SetValue(ref addedSettings, value);
         }
-        public SettingsViewModel(string title, string iconName, ContextMediator contextMediator) : base(title, iconName, contextMediator)
+        public SettingsViewModel(string title, string iconName, ContextMediator contextMediator, IList<BaseGroup> _groups) : base(title, iconName, contextMediator)
         {
+            Groups = _groups;
             AddedSettings = new ObservableCollection<ISetting>();
             ClearCommand = new DelegateCommand(() =>
             FindSetting = null);
             AddValueCommand = new DelegateCommand(() =>
             {
-                if (SelectedSetting is Settings.DoubleSetting)
-                    t((Settings.DoubleSetting)SelectedSetting).Value.Add((double)Vall);
-                else if (SelectedSetting is Settings.IntSetting)
-                    ((Settings.IntSetting)SelectedSetting).Value.Add((int)Vall);
+                
             });
         }
 

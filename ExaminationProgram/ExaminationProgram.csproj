@@ -95,6 +95,7 @@
     <Compile Include="Helpers\Extentions\EnumerableExtentions.cs" />
     <Compile Include="Helpers\IconBehaviour.cs" />
     <Compile Include="Helpers\Extentions\ExtendedMultiBinding.cs" />
+    <Compile Include="Helpers\SettingsHelpers.cs" />
     <Compile Include="Instruments\SignalAnalyzer.cs" />
     <Compile Include="Instruments\SignalGenerator.cs" />
     <Compile Include="Interfaces\IBootstrap.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Modules\CalibrationModule\CalibratonView.xaml.cs">
       <DependentUpon>CalibratonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\LoggingModule\DependencyProperties.cs" />
     <Compile Include="Modules\LoggingModule\LoggingWindowViewModel.cs" />
     <Compile Include="Modules\LoggingModule\LogginWindowView.xaml.cs">
       <DependentUpon>LogginWindowView.xaml</DependentUpon>
